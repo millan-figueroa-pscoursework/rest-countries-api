@@ -4,12 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>REST Countries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script type="module" src="/src/main.ts" defer></script>
   </head>
   <body>
     <header class="site-header container">
       <h1 class="brand">Where in the world?</h1>
-      <button id="theme-toggle">🌙 Dark Mode</button>
+      <button class="theme-toggle" aria-pressed="false">
+        <i class="fa-regular fa-moon"></i>
+        Dark Mode
+      </button>
     </header>
     <main id="app" class="container">
       <section id="controls" class="controls">
@@ -29,7 +33,7 @@
         </div>
       </section>
       <section id="countries-grid" class="grid"></section>
-      <section id="detail">
+      <section id="detail" hidden>
         <button id="back-btn" class="back"><- Back</button>
       </section>
     </main>
