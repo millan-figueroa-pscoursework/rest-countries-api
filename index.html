@@ -3,10 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REST Countries</title>
     <script type="module" src="/src/main.ts" defer></script>
-    <title>rest-countries-api</title>
   </head>
   <body>
-    <div id="app"><h1>REST Countries API</h1></div>
+    <header class="site-header container">
+      <h1 class="brand">Where in the world?</h1>
+      <button id="theme-toggle">🌙 Dark Mode</button>
+    </header>
+    <main id="app" class="container">
+      <section id="controls" class="controls">
+        <div class="search">
+          <input type="search" id="search-input" placeholder="Search for a country..."
+          />
+        </div>
+      </section>
+    </main>
   </body>
 </html>
