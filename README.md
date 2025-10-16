@@ -60,7 +60,10 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+1. main is the entry point. html structure does not live inside main.ts. html is the entry point Vite serves directly, main.ts only handles dynamic logic (rendering, fetching, data, interactivity)
+2. Vite serves index.html as-is, finds script tag, compiles ts to js and injects it, that script manipulates the DOM
+3. Anything we want to be static (headers, base layout, placeholders, meta tags) goes in index. Anything generated (like fetching countries and populating cards) happens inside main.ts.
+4. Global css import works in either index.html or main.ts
 
 To see how you can add code snippets, see below:
 
