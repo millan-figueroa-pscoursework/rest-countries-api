@@ -1,20 +1,20 @@
-import { APIError, handleAPIError } from "../utils/errorHandler";
+import { APIError, CountryLoadError } from "../utils/errorHandler";
+import type { Country } from "../models/interfaces";
 
-const BASE_URL = "https://dummyjson.com/countries";
 
-export async function fetchAllCountries() {
+// ***FUNCTION TO FETCH DATA FROM API
+export async function fetchCountries(): Promise<Country[]> {
+    const response = await fetch(
+        "https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital"
+    );
+
+    if (!response.ok) {
+        throw new APIError(`API request failed`, response.status);
+    }
+
     try {
-        const response = await fetch(BASE_URL);
-
-        if (!response.ok) {
-            throw new APIError(`Error fetching countries.`, response.status);
-        }
-
-        const data = await response.json();
-        console.log('DATA:', data);
-
-        return data.countries;
-    } catch (error: APIError | any) {
-        handleAPIError(error);
+        return await response.json();
+    } catch {
+        throw new CountryLoadError();
     }
 }

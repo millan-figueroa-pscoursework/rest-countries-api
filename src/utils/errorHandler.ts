@@ -8,6 +8,12 @@ export class APIError extends Error {
 
 }
 
+export class CountryLoadError extends Error {
+    constructor(message = "Failed to load countries") {
+        super(message);
+        this.name = "CountryLoadError";
+    }
+}
 
 export function handleAPIError(error: APIError) {
     if (error instanceof APIError) {
