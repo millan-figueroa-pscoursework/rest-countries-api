@@ -1,3 +1,4 @@
+import "./style.css";
 import { fetchCountries } from "./api/countries";
 import { APIError, CountryLoadError } from "./utils/errorHandler";
 import type { Country } from "./models/interfaces";
@@ -35,8 +36,9 @@ function renderGrid(list: Country[]) {
             const capital = country.capital?.[0] ?? "N/A";
 
             return `
-      <div class="bg-white dark:bg-slate-800 rounded-md shadow-md hover:shadow-lg transition 
-                  overflow-hidden cursor-pointer">
+      <div class="bg-surface dark:bg-dmElement rounded-md shadow-md hover:shadow-lg transition
+            overflow-hidden cursor-pointer">
+
         
         <img src="${flag}"
              alt="${name} flag"
