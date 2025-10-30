@@ -1,18 +1,19 @@
 import { APIError, handleAPIError } from "../utils/errorHandler";
 
-const BASE_URL = "https://restcountries.com/v3.1/all";
+const BASE_URL = "https://dummyjson.com/countries";
 
-export async function fetchProducts(limit: number = 10) {
+export async function fetchAllCountries() {
     try {
+        const response = await fetch(BASE_URL);
 
-        const response = await fetch(`${BASE_URL}?limit=${limit}`);
         if (!response.ok) {
-            throw new APIError(`Error fetching products.`, response.status);
+            throw new APIError(`Error fetching countries.`, response.status);
         }
 
         const data = await response.json();
-        console.log('DATA: ', data);
-        return data.products;
+        console.log('DATA:', data);
+
+        return data.countries;
     } catch (error: APIError | any) {
         handleAPIError(error);
     }

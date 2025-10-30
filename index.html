@@ -1,42 +1,56 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>REST Countries</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <script type="module" src="/src/main.ts" defer></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
-  </head>
-  <body>
-    <header class="site-header container">
-      <h1 class="brand">Where in the world?</h1>
-      <button class="theme-toggle" aria-pressed="false">
-        <ion-icon name="moon-outline"></ion-icon>
-        Dark Mode
+<html lang="en" class="h-full">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REST Countries</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script type="module" src="/src/main.ts" defer></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+</head>
+
+<body class="h-full bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <header class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between">
+    <h1 class="text-xl sm:text-2xl font-semibold">Where in the world?</h1>
+    <button
+      class="theme-toggle inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition"
+      aria-pressed="false">
+      <ion-icon name="moon-outline" class="text-lg"></ion-icon>
+      <span>Dark Mode</span>
+    </button>
+  </header>
+
+  <main id="app" class="max-w-7xl mx-auto px-4 pb-12 space-y-6">
+    <section id="controls" class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+      <div class="relative w-full sm:max-w-md">
+        <input type="search" id="search-input" placeholder="Search for a country..."
+          class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-10 py-2 outline-none focus:ring-2 ring-blue-500" />
+        <ion-icon name="search-outline" class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500"></ion-icon>
+      </div>
+
+      <div>
+        <select id="region-filter"
+          class="rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2">
+          <option value="">Filter by Region</option>
+          <option>Africa</option>
+          <option>Americas</option>
+          <option>Asia</option>
+          <option>Europe</option>
+          <option>Oceania</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="countries-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></section>
+
+    <section id="detail" hidden>
+      <button id="back-btn"
+        class="inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+        <span>&larr; Back</span>
       </button>
-    </header>
-    <main id="app" class="container">
-      <section id="controls" class="controls">
-        <div class="search">
-          <input type="search" id="search-input" placeholder="Search for a country..."
-          /> <ion-icon name="search-outline"></ion-icon>
-        </div>
-        <div class="filter">
-          <select id="region-filter">
-            <option value="">Filter by Region</option>
-            <option>Africa</option>
-            <option>Americas</option>
-            <option>Asia</option>
-            <option>Europe</option>
-            <option>Oceania</option>
-          </select>
-        </div>
-      </section>
-      <section id="countries-grid" class="grid"></section>
-      <section id="detail" hidden>
-        <button id="back-btn" class="back">Back</button>
-      </section>
-    </main>
-  </body>
+    </section>
+  </main>
+</body>
+
 </html>
