@@ -4,10 +4,15 @@ import { APIError, CountryLoadError } from "./utils/errorHandler";
 import type { Country } from "./models/interfaces";
 
 const grid = document.querySelector<HTMLDivElement>("#countries-grid")!;
+const regionFilter = document.querySelector<HTMLSelectElement>("#region-filter")!;
+
+let countries: Country[] = [];
 
 fetchCountries()
   .then(data => {
+    countries = data;
     renderGrid(data)
+    countriesFilter()
   })
   .catch(err => {
     if (err instanceof APIError) {
@@ -24,6 +29,25 @@ fetchCountries()
   });
 
 
+
+// ***FUNCTION TO FILTER COUTRIES
+
+function countriesFilter() {
+  regionFilter.addEventListener("change", applyFilters);
+}
+
+function applyFilters() {
+  const region = regionFilter.value;
+  let filtered = countries;
+
+  if (region) {
+    filtered = countries.filter(c => c.region === region);
+  }
+
+  renderGrid(filtered);
+}
+
+
 // ***FUNCTION TO RENDER FLAGS FETCHED FROM API
 
 function renderGrid(list: Country[]) {
@@ -36,27 +60,26 @@ function renderGrid(list: Country[]) {
       const capital = country.capital?.[0] ?? "N/A";
 
       return `
-      <div class="bg-surface dark:bg-dmElement rounded-md shadow-md hover:shadow-lg transition overflow-hidden cursor-pointer">
+        <div class="bg-surface dark:bg-dmElement rounded-md shadow-sm hover:shadow-md transition
+                    overflow-hidden cursor-pointer">
+          
+          <img src="${flag}" alt="${name} flag" class="w-full h-40 object-cover" />
+          
+          <div class="px-6 py-6">
+            <h2 class="font-bold text-lg mb-4">${name}</h2>
 
-        <img src="${flag}"
-             alt="${name} flag"
-             class="w-full h-40 object-cover" />
-
-        <div class="px-6 py-6">
-          <h2 class="font-bold text-lg mb-4">${name}</h2>
-
-          <p class="text-sm mb-1">
-            <span class="font-semibold">Population: </span>${population}
-          </p>
-          <p class="text-sm mb-1">
-            <span class="font-semibold">Region: </span>${region}
-          </p>
-          <p class="text-sm">
-            <span class="font-semibold">Capital: </span>${capital}
-          </p>
+            <p class="text-sm mb-1">
+              <span class="font-semibold">Population:</span> ${population}
+            </p>
+            <p class="text-sm mb-1">
+              <span class="font-semibold">Region:</span> ${region}
+            </p>
+            <p class="text-sm">
+              <span class="font-semibold">Capital:</span> ${capital}
+            </p>
+          </div>
         </div>
-      </div>
-    `;
+      `;
     })
     .join("");
 }
