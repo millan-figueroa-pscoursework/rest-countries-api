@@ -6,40 +6,38 @@ import type { Country } from "./models/interfaces";
 const grid = document.querySelector<HTMLDivElement>("#countries-grid")!;
 
 fetchCountries()
-    .then(data => {
-        renderGrid(data)
-    })
-    .catch(err => {
-        if (err instanceof APIError) {
-            grid.innerHTML = `<p class="text-red-600">Server error (${err.statusCode})</p>`;
-        }
-        else if (err instanceof CountryLoadError) {
-            grid.innerHTML = `<p class="text-red-600">Failed to load countries.</p>`;
-        }
-        else {
-            grid.innerHTML = `<p class="text-red-600">Something went wrong.</p>`;
-        }
+  .then(data => {
+    renderGrid(data)
+  })
+  .catch(err => {
+    if (err instanceof APIError) {
+      grid.innerHTML = `<p class="text-red-600">Server error (${err.statusCode})</p>`;
+    }
+    else if (err instanceof CountryLoadError) {
+      grid.innerHTML = `<p class="text-red-600">Failed to load countries.</p>`;
+    }
+    else {
+      grid.innerHTML = `<p class="text-red-600">Something went wrong.</p>`;
+    }
 
-        console.error(err);
-    });
+    console.error(err);
+  });
 
 
 // ***FUNCTION TO RENDER FLAGS FETCHED FROM API
 
 function renderGrid(list: Country[]) {
-    grid.innerHTML = list
-        .map((country) => {
-            const flag = country.flags?.png || country.flags?.svg || "";
-            const name = country.name.common;
-            const population = country.population.toLocaleString();
-            const region = country.region;
-            const capital = country.capital?.[0] ?? "N/A";
+  grid.innerHTML = list
+    .map((country) => {
+      const flag = country.flags?.png || country.flags?.svg || "";
+      const name = country.name.common;
+      const population = country.population.toLocaleString();
+      const region = country.region;
+      const capital = country.capital?.[0] ?? "N/A";
 
-            return `
-      <div class="bg-surface dark:bg-dmElement rounded-md shadow-md hover:shadow-lg transition
-            overflow-hidden cursor-pointer">
+      return `
+      <div class="bg-surface dark:bg-dmElement rounded-md shadow-md hover:shadow-lg transition overflow-hidden cursor-pointer">
 
-        
         <img src="${flag}"
              alt="${name} flag"
              class="w-full h-40 object-cover" />
@@ -59,6 +57,6 @@ function renderGrid(list: Country[]) {
         </div>
       </div>
     `;
-        })
-        .join("");
+    })
+    .join("");
 }

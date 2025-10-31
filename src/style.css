@@ -1,9 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --color-lmBg: #fafafa; /* page background (light) */
+  --color-surface: #ffffff; /* header/cards/inputs (light) */
+  --color-lmText: #111517; /* text (light) */
+  --color-lmInput: #858585; /* borders/placeholders (light) */
 
-/* :root {
-  color-scheme: light dark;
-} */
+  --color-dmBg: #202c37; /* page background (dark) */
+  --color-dmElement: #2b3945; /* header/cards/inputs (dark) */
+}
+
+@theme .dark {
+  --color-dmText: #ffffff;
+}
 
 html,
 body,

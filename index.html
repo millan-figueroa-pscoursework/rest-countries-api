@@ -11,49 +11,65 @@
 </head>
 
 <body class="h-full bg-lmBg text-lmText dark:bg-dmBg dark:text-surface">
-  <header class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between">
-    <h1 class="text-xl sm:text-2xl font-semibold">Where in the world?</h1>
-    <button class="theme-toggle inline-flex items-center gap-2 rounded-md
-        border border-lmInput/40 dark:border-transparent
-        bg-surface dark:bg-dmElement
-        text-lmText dark:text-surface
-        hover:bg-lmBg dark:hover:bg-dmBg/60
-        px-3 py-2 text-sm transition" aria-pressed="false">
 
-      <ion-icon name="moon-outline" class="text-lg"></ion-icon>
-      <span>Dark Mode</span>
-    </button>
-  </header>
-
-  <main id="app" class="max-w-7xl mx-auto px-4 pb-12 space-y-6">
-    <section id="controls" class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
-      <div class="relative w-full sm:max-w-md">
-        <input type="search" id="search-input" placeholder="Search for a country..." class="w-full rounded-md
-          border border-lmInputdark:border-transparent
+<!-- *** HEADER  -->
+  <header class="bg-surface dark:bg-dmElement shadow-sm mb-6">
+    <div class="max-w-7xl mx-auto px-4 py-6 flex items-center justify-between">
+      <h1 class="text-xl sm:text-2xl font-bold">Where in the world?</h1>
+  
+      <button class="theme-toggle font-semibold inline-flex items-center gap-2 rounded-md
+           dark:border-transparent
           bg-surface dark:bg-dmElement
           text-lmText dark:text-surface
-          placeholder-lmInput/60
-          pl-10 pr-4 py-2
-          outline-none focus:rinring-dmElement/60
-          transition" />
+          hover:bg-lmBg dark:hover:bg-dmBg/60
+          px-3 py-2 text-sm transition">
+        <ion-icon name="moon-outline" class="text-lg"></ion-icon>
+        <span>Dark Mode</span>
+      </button>
+    </div>
+  </header>
+
+
+  <main 
+    id="app" 
+    class="max-w-7xl mx-auto px-4 pb-12 space-y-6 text-sm">
+
+<!-- *** COUNTRY SEARCH -->
+    <section 
+      id="controls" 
+      class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+      <div class="relative w-full sm:max-w-md">
+        <input 
+          type="search" 
+          id="search-input" 
+          placeholder="Search for a country..." 
+          class="w-full rounded-md font-semibold
+            dark:border-transparent
+            bg-surface dark:bg-dmElement
+            text-lmText dark:text-surface
+            placeholder-lmInput/60
+            pl-10 pr-4 py-2 
+            outline-none focus:rinring-dmElement/60
+            transition" />
       
-        <ion-icon name="search-outline" class="absolute left-3 top-1/2 -translate-y-1/2
+        <ion-icon 
+        name="search-outline" 
+        class="absolute left-3 top-1/2 -translate-y-1/2
             text-lmInput/60 dark:text-surface/60
             text-lg pointer-events-none">
         </ion-icon>
       </div>
-</ion-icon>
-      </div>
 
+<!-- *** REGION FILTER  -->
       <div>
-        <select id="region-filter" class="rounded-md 
-          border border-lmInputdark:border-transparent
-          bg-surface dark:bg-dmElement
-          text-lmText dark:text-surface
-          placeholder-lmInput/60
-          hover:bg-lmBg dark:hover:bg-dmBg/60
-          px-3 py-2 transition">
-
+        <select 
+          id="region-filter" 
+          class="rounded-md 
+            bg-surface dark:bg-dmElement
+            text-lmText dark:text-surface
+            placeholder-lmInput/60
+            hover:bg-lmBg dark:hover:bg-dmBg/60
+            px-3 py-2 transition">
           <option value="">Filter by Region</option>
           <option>Africa</option>
           <option>Americas</option>
@@ -64,16 +80,22 @@
       </div>
     </section>
 
-    <section id="countries-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-14"></section>
+<!-- *** COUNTRIES GRID  -->
+    <section 
+      id="countries-grid" 
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-14">
+    </section>
 
-
+<!-- *** BACK BTN MOBILE  -->
     <section id="detail" hidden>
-      <button id="back-btn" class="inline-flex     items-center gap-2 rounded-md 
-        border border-lmInputdark:border-transparent
-        bg-surface dark:bg-dmElement
-        text-lmText dark:text-surface
-        hover:bg-lmBg dark:hover:bg-dmBg/60
-        px-3 py-2 text-sm transition">
+      <button 
+        id="back-btn" 
+        class="inline-flex items-center gap-2 rounded-md 
+          border border-lmInputdark:border-transparent
+          bg-surface dark:bg-dmElement
+          text-lmText dark:text-surface
+          hover:bg-lmBg dark:hover:bg-dmBg/60
+          px-3 py-2 text-sm transition">
         <span>&larr; Back</span>
       </button>
     </section>
