@@ -69,7 +69,8 @@ export function renderDetail(
     const subRegion = country.subregion || "N/A";
     const capital = country.capital?.[0] ?? "N/A";
     const tld = country.tld?.[0] ?? "N/A";
-
+    const currencies = country.currencies || "N/A";
+    const languages = country.languages || "N/A";
 
     detailCard.innerHTML = `
     <div class="detail-container flex flex-col lg:flex-row gap-16 items-start">
