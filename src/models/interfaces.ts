@@ -15,4 +15,10 @@ export interface Country {
     capital?: string[];
     population: number;
     region: string;
+    subregion?: string;
+    tld?: string[];
+    currencies?: Record<string, { name: string; symbol?: string }>;
+    languages?: Record<string, string>;
+    borders?: string[];
+    cca3: string;
 }

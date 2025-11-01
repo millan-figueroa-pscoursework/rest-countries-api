@@ -48,4 +48,11 @@ Provide a link to the live demo in your README.md file.
 #### ☐ Reflection Document:
 
 Write a 200-300 word reflection discussing your development process, challenges faced, solutions implemented, and potential improvements.
+
+- Interacting with static vs rendered elements
+- Event delegation to be able to show country details view
+- Installing the latest version of Tailwind, setting up global variables
+- Separation of concerns (models, utilities, api)
+- Using ts annotation for querySelector like <HTMLDivElement>. Its a generic which tells TypeScript that you're expecting the selected element to be an HTMLDivElement
+
 Include this reflection in your GitHub repository. (#what-i-learned)
