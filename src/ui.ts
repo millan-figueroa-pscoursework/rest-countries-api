@@ -25,10 +25,6 @@ export function handleDetail(
         const card = (event.target as HTMLElement).closest<HTMLElement>("article[data-name]");
         if (!card) return; // exit if no data name
 
-        // read country name from the cards h2
-        // const name = card.querySelector("h2")?.textContent?.trim();
-        // if (!name) return; // exit if no name
-
         //get country name from dataset
         const countryName = card.dataset.name;
         if (!countryName) return
@@ -56,17 +52,51 @@ export function renderDetail(
     grid: HTMLSectionElement,
     detailSection: HTMLSectionElement,
     detailCard: HTMLDivElement
-) {
+) { // hide grid and controls
     controls.hidden = true;
     grid.hidden = true;
     detailSection.hidden = false;
 
+    // assigns available detail view fields to variables
     const flag = country.flags?.svg || country.flags?.png || "";
     const name = country.name.common;
+    const nativeName =
+        country.name.nativeName
+            ? Object.values(country.name.nativeName)[0]?.common
+            : name;
     const population = country.population.toLocaleString();
     const region = country.region || "N/A";
+    const subRegion = country.subregion || "N/A";
     const capital = country.capital?.[0] ?? "N/A";
+    const tld = country.tld?.[0] ?? "N/A";
+
 
     detailCard.innerHTML = `
-    <h2 class="text-amber-300">${flag}, ${name}, ${population}, ${region}, ${capital}</h2>`;
+    <div class="detail-container flex flex-col lg:flex-row gap-16 items-start">
+      
+      <!-- Flag -->
+      <img src="${flag}" alt="${name} flag" class="w-full max-w-xl rounded shadow" />
+
+      <!-- Text content -->
+      <div class="flex flex-col gap-8">
+        <h2 class="text-3xl font-bold">${name}</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-6">
+          <div class="flex flex-col gap-1">
+            <p><strong>Native Name:</strong> ${nativeName}</p>
+            <p><strong>Population:</strong> ${population}</p>
+            <p><strong>Region:</strong> ${region}</p>
+            <p><strong>Sub Region:</strong> ${subRegion}</p>
+            <p><strong>Capital:</strong> ${capital}</p>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <p><strong>Top Level Domain:</strong> ${tld}</p>
+            <p><strong>Currencies:</strong> ${currencies}</p>
+            <p><strong>Languages:</strong> ${languages}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
 }

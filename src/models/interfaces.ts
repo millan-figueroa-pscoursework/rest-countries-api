@@ -1,21 +1,27 @@
 export interface Flags {
     png: string;
-    alt?: string;
     svg?: string;
+    alt?: string;
+}
+
+export interface NativeNameEntry {
+    official: string;
+    common: string;
 }
 
 export interface Name {
     common: string;
     official: string;
+    nativeName?: Record<string, NativeNameEntry>;
 }
 
 export interface Country {
     flags: Flags;
     name: Name;
-    capital?: string[];
     population: number;
     region: string;
     subregion?: string;
+    capital?: string[];
     tld?: string[];
     currencies?: Record<string, { name: string; symbol?: string }>;
     languages?: Record<string, string>;
