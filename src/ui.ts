@@ -2,51 +2,59 @@ import type { Country } from "./models/interfaces";
 
 // ***UI FUNCTIONS
 
-// function sets up country clicking through event delegation
+// function sets up click behavior thru event delegation so every card doesn't need its own listener
 export function handleDetail(
-    grid: HTMLElement,
-    controls: HTMLElement,
-    backBtn: HTMLButtonElement,
-    detailSection: HTMLElement,
+    // pass in params from main.ts
+    controls: HTMLSectionElement,
+    grid: HTMLSectionElement,
+    detailSection: HTMLSectionElement,
     detailCard: HTMLDivElement,
+    backBtn: HTMLButtonElement,
     countries: Country[],
+    // callback function that shows country deets
     renderDetail: (
         country: Country,
-        grid: HTMLElement,
-        controls: HTMLElement,
-        detailSection: HTMLElement,
-        detailCard: HTMLDivElement
+        controls: HTMLSectionElement,
+        grid: HTMLSectionElement,
+        detailSection: HTMLSectionElement,
+        detailCard: HTMLDivElement,
     ) => void) {
-    // put listener on parent instead of adding to every card (bc cards are dynamically rendered)
-    grid.addEventListener("click", (element) => {
-        // find nearest element w data-name attribute
-        const card = (element.target as HTMLElement).closest<HTMLElement>("article[data-name]");
+    // listens for clicks on the grid
+    grid.addEventListener("click", (event) => {
+        // finds clicked card from article w data-name
+        const card = (event.target as HTMLElement).closest<HTMLElement>("article[data-name]");
+        if (!card) return; // exit if no data name
 
-        if (!card) return; // exit if no data
+        // read country name from the cards h2
+        // const name = card.querySelector("h2")?.textContent?.trim();
+        // if (!name) return; // exit if no name
 
-        // get country name from the cards h2
-        const name = card.querySelector("h2")?.textContent?.trim();
-        if (!name) return;
+        //get country name from dataset
+        const countryName = card.dataset.name;
+        if (!countryName) return
 
-        const country = countries.find(c => c.name.common === name);
-        if (country) {
-            renderDetail(country, grid, controls, detailSection, detailCard);
-        }
+        // find matching Country object
+        const country = countries.find(
+            (c) => c.name.common === countryName
+        );
+        if (!country) return;
+
+        // send the Country data to renderDetail
+        renderDetail(country, controls, grid, detailSection, detailCard);
     });
-
-    // back button to exit detail view
+    // back button takes u back to grid
     backBtn.addEventListener("click", () => {
         location.reload();
     });
 }
 
 
-// toggles to detail view and renders the detail contents
+// toggles detail view by hiding main grid and controls and renders the detail contents
 export function renderDetail(
     country: Country,
-    grid: HTMLElement,
-    controls: HTMLElement,
-    detailSection: HTMLElement,
+    controls: HTMLSectionElement,
+    grid: HTMLSectionElement,
+    detailSection: HTMLSectionElement,
     detailCard: HTMLDivElement
 ) {
     controls.hidden = true;
