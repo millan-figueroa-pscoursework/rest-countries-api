@@ -22,10 +22,20 @@ fetchCountries()
     countries = data;
 
     // display countries
-    renderGrid(data)
+    renderGrid(data);
     // activate region filter event listener AFTER data is fetched
-    countriesFilter()
+    countriesFilter();
+    handleDetail(
+      grid,
+      controls,
+      backBtn,
+      detailSection,
+      detailCard,
+      countries,
+      renderDetail
+    );
   })
+
   .catch(err => { // runs if fetching fails, shows custom messages depending on error type
     if (err instanceof APIError) {
       grid.innerHTML = `<p class="text-red-600">Server error (${err.statusCode})</p>`;

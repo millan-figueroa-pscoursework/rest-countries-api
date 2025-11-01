@@ -1,14 +1,22 @@
 import type { Country } from "./models/interfaces";
 
-// ***FUNCTIONS TO RENDER DETAILED VIEW
+// ***UI FUNCTIONS
 
 // function sets up country clicking through event delegation
 export function handleDetail(
     grid: HTMLElement,
+    controls: HTMLElement,
     backBtn: HTMLButtonElement,
+    detailSection: HTMLElement,
+    detailCard: HTMLDivElement,
     countries: Country[],
-    renderDetail: (c: Country) => void
-) {
+    renderDetail: (
+        country: Country,
+        grid: HTMLElement,
+        controls: HTMLElement,
+        detailSection: HTMLElement,
+        detailCard: HTMLDivElement
+    ) => void) {
     // put listener on parent instead of adding to every card (bc cards are dynamically rendered)
     grid.addEventListener("click", (element) => {
         // find nearest element w data-name attribute
@@ -21,7 +29,9 @@ export function handleDetail(
         if (!name) return;
 
         const country = countries.find(c => c.name.common === name);
-        if (country) renderDetail(country);
+        if (country) {
+            renderDetail(country, grid, controls, detailSection, detailCard);
+        }
     });
 
     // back button to exit detail view
@@ -30,7 +40,25 @@ export function handleDetail(
     });
 }
 
-// Render detail placeholder func
-export function renderDetail(country: Country) {
-    console.log("Render details!!")
+
+// toggles to detail view and renders the detail contents
+export function renderDetail(
+    country: Country,
+    grid: HTMLElement,
+    controls: HTMLElement,
+    detailSection: HTMLElement,
+    detailCard: HTMLDivElement
+) {
+    controls.hidden = true;
+    grid.hidden = true;
+    detailSection.hidden = false;
+
+    const flag = country.flags?.svg || country.flags?.png || "";
+    const name = country.name.common;
+    const population = country.population.toLocaleString();
+    const region = country.region || "N/A";
+    const capital = country.capital?.[0] ?? "N/A";
+
+    detailCard.innerHTML = `
+    <h2 class="text-amber-300">${flag}, ${name}, ${population}, ${region}, ${capital}</h2>`;
 }
