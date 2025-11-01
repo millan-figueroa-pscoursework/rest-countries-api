@@ -1,35 +1,45 @@
 ### 🎯 Users should be able to:
 
-☐ See all countries from the API on the homepage<br>
-☐ Search for a country using an `input` field<br>
-☐ Filter countries by region<br>
-☐ Click on a country to see more detailed information on a separate page<br>
-☐ Click through to the border countries on the detail page<br>
-☐ Toggle the color scheme between light and dark mode
+[x] See all countries from the API on the homepage<br>
+[ ] Search for a country using an `input` field<br>
+[x] Filter countries by region<br>
+[ ] Click on a country to see more detailed information on a separate page<br>
+[ ] Click through to the border countries on the detail page<br>
+[ ] Toggle the color scheme between light and dark mode
+
+### Nexst steps
+
+[ ] Finish styling detail view
+[ ] Fix currencies/ language render
+[ ] Fix htmlelement annotation compiler issues
+[ ] Mobile view for grid and details view
+[ ] Fix back button styles and functionality so it goes back to list
+[ ] Add border countries ui and functionality
+[ ] Type event param in handleDetails
 
 ### 📌 Project Requirements
 
-##### ☐ Responsive Design:
+##### [x] Responsive Design:
 
 Ensure the application is fully responsive across various devices and screen sizes.
 
-#### ☐ API Integration:
+#### [x] API Integration:
 
 Effectively integrate the specified API to fetch and display data dynamically.
 
-#### ☐ Interactivity:
+#### [x] Interactivity:
 
 Implement interactive elements such as search functionality, form validation, and dynamic content updates.
 
-#### ☐ Accessibility:
+#### [x] Accessibility:
 
 Follow best practices to make the application accessible to all users.
 
-#### ✔️ Version Control:
+#### [x] Version Control:
 
 Use Git for version control, with regular commits and a well-documented GitHub repository.
 
-#### ✔️ Documentation:
+#### [x] Documentation:
 
 Include a comprehensive README.md file detailing the project setup, features, and any additional notes.
 

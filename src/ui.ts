@@ -72,6 +72,8 @@ export function renderDetail(
     const currencies = country.currencies || "N/A";
     const languages = country.languages || "N/A";
 
+    const borders = country.borders || [];
+
     detailCard.innerHTML = `
     <div class="detail-container flex flex-col lg:flex-row gap-16 items-start">
       
@@ -95,6 +97,26 @@ export function renderDetail(
             <p><strong>Top Level Domain:</strong> ${tld}</p>
             <p><strong>Currencies:</strong> ${currencies}</p>
             <p><strong>Languages:</strong> ${languages}</p>
+          </div>
+        </div>
+
+        <!-- Border Countries -->
+        <div class="flex flex-col md:flex-row md:items-center gap-3">
+          <strong>Border Countries:</strong>
+          <div class="flex flex-wrap gap-2">
+            ${borders.length
+            ? borders
+                .map(
+                    code => `
+                <button 
+                  class="border border-gray-300 dark:border-gray-700 px-4 py-1 rounded shadow-sm"
+                  data-border="${code}">
+                  ${code}
+                </button>`
+                )
+                .join("")
+            : `<span class="opacity-70">None</span>`
+        }
           </div>
         </div>
       </div>
