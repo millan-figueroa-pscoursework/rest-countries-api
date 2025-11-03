@@ -2,9 +2,10 @@ import "./style.css";
 import { fetchCountries } from "./api/countries";
 import { APIError, CountryLoadError } from "./utils/errorHandler";
 import type { Country } from "./models/interfaces";
-import { handleDetail, renderDetail } from "./ui";
+import { handleDetail, renderDetail, toggleTheme } from "./ui";
 
 // Select DOM elements and add generic for type annotation
+const themeToggleBtn = document.querySelector("#theme-toggle-btn") as HTMLButtonElement;
 const controls = document.querySelector("#controls") as HTMLElement;
 const searchInput = document.querySelector("#search-input") as HTMLInputElement;
 const regionFilter = document.querySelector("#region-filter") as HTMLSelectElement;
@@ -26,8 +27,9 @@ fetchCountries()
     renderGrid(data);
 
     // call functions after data is fetched
-    countriesSearch()
+    countriesSearch();
     countriesFilter();
+    toggleTheme(themeToggleBtn);
     handleDetail(
       controls,
       grid,

@@ -5,7 +5,7 @@
 [x] Filter countries by region<br>
 [x] Click on a country to see more detailed information on a separate page<br>
 [ ] Click through to the border countries on the detail page<br>
-[ ] Toggle the color scheme between light and dark mode
+[x] Toggle the color scheme between light and dark mode
 
 ### Nexst steps
 
@@ -15,7 +15,7 @@
 [ ] Mobile view for grid and details view
 [ ] Fix back button styles and functionality so it goes back to list
 [ ] Add border countries ui and functionality
-[ ] Type event param in handleDetails
+[x] Type event param in handleDetails
 [ ] Fix styling in flag in container so it doesn't cut off
 
 ### 📌 Project Requirements

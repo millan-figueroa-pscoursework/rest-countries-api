@@ -2,6 +2,15 @@ import type { Country } from "./models/interfaces";
 
 // ***UI FUNCTIONS
 
+export function toggleTheme(themeToggleBtn: HTMLButtonElement) {
+    // hook up button to listen for click
+    themeToggleBtn.addEventListener("click", () => {
+        // add dark to html class (toggles back and forth)
+        document.documentElement.classList.toggle("dark");
+    });
+}
+
+
 // function sets up click behavior thru event delegation so every card doesn't need its own listener
 export function handleDetail(
     // pass in params from main.ts

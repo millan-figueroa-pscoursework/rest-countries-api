@@ -1,17 +1,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap");
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-lmBg: #fafafa; /* page background (light) */
   --color-surface: #ffffff; /* header/cards/inputs (light) */
   --color-lmText: #111517; /* text (light) */
   --color-lmInput: #858585; /* borders/placeholders (light) */
-
-  --color-dmBg: #202c37; /* page background (dark) */
-  --color-dmElement: #2b3945; /* header/cards/inputs (dark) */
 }
 
 @theme .dark {
+  --color-dmBg: #202c37; /* page background (dark) */
+  --color-dmElement: #2b3945; /* header/cards/inputs (dark) */
   --color-dmText: #ffffff;
 }
 
