@@ -5,13 +5,14 @@ import type { Country } from "./models/interfaces";
 import { handleDetail, renderDetail } from "./ui";
 
 // Select DOM elements and add generic for type annotation
-const controls = document.querySelector<HTMLSectionElement>("#controls")!;
-const searchInput = document.querySelector<HTMLSectionElement>("#search-input")!;
-const regionFilter = document.querySelector<HTMLSelectElement>("#region-filter")!;
-const grid = document.querySelector<HTMLSectionElement>("#countries-grid")!;
-const detailSection = document.querySelector<HTMLSectionElement>("#detail")!;
-const detailCard = document.querySelector<HTMLDivElement>("#detail-card")!;
-const backBtn = document.querySelector<HTMLButtonElement>("#back-btn")!;
+const controls = document.querySelector("#controls") as HTMLElement;
+const searchInput = document.querySelector("#search-input") as HTMLInputElement;
+const regionFilter = document.querySelector("#region-filter") as HTMLSelectElement;
+const grid = document.querySelector("#countries-grid") as HTMLElement;
+const detailSection = document.querySelector("#detail") as HTMLElement;
+const detailCard = document.querySelector("#detail-card") as HTMLDivElement;
+const backBtn = document.querySelector("#back-btn") as HTMLButtonElement;
+
 
 let countries: Country[] = [];
 
@@ -51,21 +52,26 @@ fetchCountries()
   });
 
 
-// ***FUNCTIONS TO SEARCH COUTRIES
+// ***FUNCTIONS TO SEARCH COUNTRIES
 function countriesSearch() {
   // sets up event listener to listen for selected region
   searchInput.addEventListener("change", applySearch);
 }
 
 function applySearch() {
-  // reads input value
-  const input = searchInput.value;
-  // pull country names from country objects (object keys?) push to array, loop through country names array until finding serach input match
-  console.log(input);
+  // reads input value, removes spaces 
+  const input = searchInput.value.trim();
+
+  // use filter to loop thru countries array and compare input to "common" country name. 
+  const result = countries.filter(country =>
+    country.name.common.includes(input)
+  );
+  // console.log(result);
+  renderGrid(result)
 }
 
 
-// ***FUNCTIONS TO FILTER COUTRIES
+// ***FUNCTIONS TO FILTER COUNTRIES
 function countriesFilter() {
   // sets up event listener to listen for selected region
   regionFilter.addEventListener("change", applyFilters);

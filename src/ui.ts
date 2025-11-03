@@ -5,18 +5,18 @@ import type { Country } from "./models/interfaces";
 // function sets up click behavior thru event delegation so every card doesn't need its own listener
 export function handleDetail(
     // pass in params from main.ts
-    controls: HTMLSectionElement,
-    grid: HTMLSectionElement,
-    detailSection: HTMLSectionElement,
+    controls: HTMLElement,
+    grid: HTMLElement,
+    detailSection: HTMLElement,
     detailCard: HTMLDivElement,
     backBtn: HTMLButtonElement,
     countries: Country[],
     // callback function that shows country deets
     renderDetail: (
         country: Country,
-        controls: HTMLSectionElement,
-        grid: HTMLSectionElement,
-        detailSection: HTMLSectionElement,
+        controls: HTMLElement,
+        grid: HTMLElement,
+        detailSection: HTMLElement,
         detailCard: HTMLDivElement,
     ) => void) {
     // listens for clicks on the grid
@@ -48,9 +48,9 @@ export function handleDetail(
 // toggles detail view by hiding main grid and controls and renders the detail contents
 export function renderDetail(
     country: Country,
-    controls: HTMLSectionElement,
-    grid: HTMLSectionElement,
-    detailSection: HTMLSectionElement,
+    controls: HTMLElement,
+    grid: HTMLElement,
+    detailSection: HTMLElement,
     detailCard: HTMLDivElement
 ) { // hide grid and controls
     controls.hidden = true;

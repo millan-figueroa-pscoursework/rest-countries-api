@@ -1,9 +1,9 @@
 ### 🎯 Users should be able to:
 
 [x] See all countries from the API on the homepage<br>
-[ ] Search for a country using an `input` field<br>
+[x] Search for a country using an `input` field<br>
 [x] Filter countries by region<br>
-[ ] Click on a country to see more detailed information on a separate page<br>
+[x] Click on a country to see more detailed information on a separate page<br>
 [ ] Click through to the border countries on the detail page<br>
 [ ] Toggle the color scheme between light and dark mode
 
@@ -11,7 +11,7 @@
 
 [ ] Finish styling detail view
 [ ] Fix currencies/ language render
-[ ] Fix htmlelement annotation compiler issues
+[x] Fix htmlelement annotation compiler issues
 [ ] Mobile view for grid and details view
 [ ] Fix back button styles and functionality so it goes back to list
 [ ] Add border countries ui and functionality
