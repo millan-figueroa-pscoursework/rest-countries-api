@@ -16,6 +16,7 @@
 [ ] Fix back button styles and functionality so it goes back to list
 [ ] Add border countries ui and functionality
 [ ] Type event param in handleDetails
+[ ] Fix styling in flag in container so it doesn't cut off
 
 ### 📌 Project Requirements
 

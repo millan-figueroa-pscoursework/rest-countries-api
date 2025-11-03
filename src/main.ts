@@ -6,6 +6,7 @@ import { handleDetail, renderDetail } from "./ui";
 
 // Select DOM elements and add generic for type annotation
 const controls = document.querySelector<HTMLSectionElement>("#controls")!;
+const searchInput = document.querySelector<HTMLSectionElement>("#search-input")!;
 const regionFilter = document.querySelector<HTMLSelectElement>("#region-filter")!;
 const grid = document.querySelector<HTMLSectionElement>("#countries-grid")!;
 const detailSection = document.querySelector<HTMLSectionElement>("#detail")!;
@@ -22,7 +23,9 @@ fetchCountries()
 
     // display countries
     renderGrid(data);
-    // activate region filter event listener AFTER data is fetched
+
+    // call functions after data is fetched
+    countriesSearch()
     countriesFilter();
     handleDetail(
       controls,
@@ -48,9 +51,21 @@ fetchCountries()
   });
 
 
+// ***FUNCTIONS TO SEARCH COUTRIES
+function countriesSearch() {
+  // sets up event listener to listen for selected region
+  searchInput.addEventListener("change", applySearch);
+}
+
+function applySearch() {
+  // reads input value
+  const input = searchInput.value;
+  // pull country names from country objects (object keys?) push to array, loop through country names array until finding serach input match
+  console.log(input);
+}
+
 
 // ***FUNCTIONS TO FILTER COUTRIES
-
 function countriesFilter() {
   // sets up event listener to listen for selected region
   regionFilter.addEventListener("change", applyFilters);
@@ -72,7 +87,6 @@ function applyFilters() {
 
 
 // ***FUNCTION TO RENDER FLAGS FETCHED FROM API
-
 function renderGrid(list: Country[]) {
   grid.innerHTML = list
     // loops through each country and returns element for each item
