@@ -9,14 +9,14 @@
 
 ### Nexst steps
 
-[ ] Finish styling detail view
-[ ] Fix currencies/ language render
+[x] Finish styling detail view
+[x] Fix currencies/ language render
 [x] Fix htmlelement annotation compiler issues
 [ ] Mobile view for grid and details view
-[ ] Fix back button styles and functionality so it goes back to list
+[x] Fix back button styles and functionality so it goes back to list
 [ ] Add border countries ui and functionality
 [x] Type event param in handleDetails
-[ ] Fix styling in flag in container so it doesn't cut off
+[x] Fix styling in flag in container so it doesn't cut off
 
 ### 📌 Project Requirements
 

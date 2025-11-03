@@ -27,6 +27,7 @@ export function handleDetail(
         grid: HTMLElement,
         detailSection: HTMLElement,
         detailCard: HTMLDivElement,
+        countries: Country[]
     ) => void) {
     // listens for clicks on the grid
     grid.addEventListener("click", (event) => {
@@ -45,7 +46,7 @@ export function handleDetail(
         if (!country) return;
 
         // send the Country data to renderDetail
-        renderDetail(country, controls, grid, detailSection, detailCard);
+        renderDetail(country, controls, grid, detailSection, detailCard, countries);
     });
     // back button takes u back to grid
     backBtn.addEventListener("click", () => {
@@ -78,23 +79,29 @@ export function renderDetail(
     const subRegion = country.subregion || "N/A";
     const capital = country.capital?.[0] ?? "N/A";
     const tld = country.tld?.[0] ?? "N/A";
-    const currencies = country.currencies || "N/A";
-    const languages = country.languages || "N/A";
+    const currencies = country.currencies
+        ? Object.values(country.currencies)
+            .map(c => `${c.name}${c.symbol ? ` (${c.symbol})` : ""}`)
+            .join(", ")
+        : "N/A";
 
+    const languages = country.languages
+        ? Object.values(country.languages).join(", ")
+        : "N/A";
     const borders = country.borders || [];
 
     detailCard.innerHTML = `
-    <div class="detail-container flex flex-col lg:flex-row gap-16 items-start">
+    <div class="detail-container flex flex-col lg:flex-row gap-20 items-start px-4 py-4">
       
       <!-- Flag -->
       <img src="${flag}" alt="${name} flag" class="w-full max-w-xl rounded shadow" />
 
       <!-- Text content -->
-      <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-8 py-4">
         <h2 class="text-3xl font-bold">${name}</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm leading-6">
-          <div class="flex flex-col gap-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-md leading-6">
+          <div class="flex flex-col gap-2">
             <p><strong>Native Name:</strong> ${nativeName}</p>
             <p><strong>Population:</strong> ${population}</p>
             <p><strong>Region:</strong> ${region}</p>
