@@ -1,4 +1,5 @@
 import type { Country } from "./models/interfaces";
+import { fetchCodeLookup } from "./api/countries";
 
 // ***UI FUNCTIONS
 
@@ -56,13 +57,15 @@ export function handleDetail(
 
 
 // toggles detail view by hiding main grid and controls and renders the detail contents
-export function renderDetail(
+export async function renderDetail(
     country: Country,
     controls: HTMLElement,
     grid: HTMLElement,
     detailSection: HTMLElement,
-    detailCard: HTMLDivElement
-) { // hide grid and controls
+    detailCard: HTMLDivElement,
+    countries: Country[]
+) {
+    // hide grid and controls
     controls.hidden = true;
     grid.hidden = true;
     detailSection.hidden = false;
@@ -84,11 +87,18 @@ export function renderDetail(
             .map(c => `${c.name}${c.symbol ? ` (${c.symbol})` : ""}`)
             .join(", ")
         : "N/A";
-
     const languages = country.languages
         ? Object.values(country.languages).join(", ")
         : "N/A";
-    const borders = country.borders || [];
+
+    // looks up border codes returned by api
+    const codeLookup = await fetchCodeLookup(); // call once; later calls use cache
+
+    const borders = country.borders ?? [];
+    const borderItems = borders.map(code => ({
+        code,
+        name: codeLookup[code] ?? code// fallback to code if not found
+    }));
 
     detailCard.innerHTML = `
     <div class="detail-container flex flex-col lg:flex-row gap-20 items-start px-4 py-4">
@@ -120,15 +130,15 @@ export function renderDetail(
         <div class="flex flex-col md:flex-row md:items-center gap-3">
           <strong>Border Countries:</strong>
           <div class="flex flex-wrap gap-2">
-            ${borders.length
-            ? borders
+            ${borderItems.length
+            ? borderItems
                 .map(
-                    code => `
-                <button 
-                  class="border border-gray-300 dark:border-gray-700 px-4 py-1 rounded shadow-sm"
-                  data-border="${code}">
-                  ${code}
-                </button>`
+                    b => `
+                        <button 
+                          class="border border-gray-300 dark:border-gray-700 px-4 py-1 rounded shadow-sm"
+                          data-border="${b.code}">
+                          ${b.name}
+                        </button>`
                 )
                 .join("")
             : `<span class="opacity-70">None</span>`
@@ -138,4 +148,29 @@ export function renderDetail(
       </div>
     </div>
   `;
+
+    // click to show that country's detail card
+    detailCard
+        .querySelectorAll<HTMLButtonElement>('button[data-border]')
+        .forEach(btn => {
+            btn.addEventListener("click", () => {
+                const code = btn.getAttribute("data-border");
+                if (!code) return;
+
+                // find the matching country by name using the code map
+                const neighborName = codeLookup[code];
+                if (!neighborName) return;
+
+                const neighbor = countries.find(
+                    c => c.name.common === neighborName
+                );
+                if (!neighbor) return;
+
+                // show clicked border country's details
+                void renderDetail(neighbor, controls, grid, detailSection, detailCard, countries);
+
+                // optional UX: scroll to top
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
 }

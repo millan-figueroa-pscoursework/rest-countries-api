@@ -112,7 +112,7 @@ function renderGrid(list: Country[]) {
                     overflow-hidden cursor-pointer"
                     data-name="${name}">
           
-          <img src="${flag}" alt="${name} flag" class="w-full h-40 object-fill" />
+          <img src="${flag}" alt="${name} flag" class="w-full h-40 object-cover" />
           
           <div class="px-6 py-6">
             <h2 class="font-bold text-lg mb-4">${name}</h2>

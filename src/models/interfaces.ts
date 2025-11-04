@@ -28,3 +28,10 @@ export interface Country {
     borders?: string[];
     cca3: string;
 }
+
+export interface CountryCodeRow {
+    cca3: string;
+    name: {
+        common: string;
+    };
+}
