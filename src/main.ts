@@ -2,7 +2,7 @@ import "./style.css";
 import { fetchCountries } from "./api/countries";
 import { APIError, CountryLoadError } from "./utils/errorHandler";
 import type { Country } from "./models/interfaces";
-import { handleDetail, renderDetail, toggleTheme } from "./ui";
+import { handleDetail, renderDetail, toggleTheme, renderGrid } from "./ui";
 
 // Select DOM elements and add generic for type annotation
 const themeToggleBtn = document.querySelector("#theme-toggle-btn") as HTMLButtonElement;
@@ -24,7 +24,7 @@ fetchCountries()
     countries = data;
 
     // display countries
-    renderGrid(data);
+    renderGrid(data, grid);
 
     // call functions after data is fetched
     countriesSearch();
@@ -62,14 +62,14 @@ function countriesSearch() {
 
 function applySearch() {
   // reads input value, removes spaces 
-  const input = searchInput.value.trim();
+  const input = searchInput.value.trim().toLowerCase();
 
   // use filter to loop thru countries array and compare input to "common" country name. 
   const result = countries.filter(country =>
-    country.name.common.includes(input)
+    country.name.common.toLowerCase().includes(input)
   );
   // console.log(result);
-  renderGrid(result)
+  renderGrid(result, grid)
 }
 
 
@@ -90,46 +90,9 @@ function applyFilters() {
   }
 
   // re-render grid with filter results
-  renderGrid(filtered);
+  renderGrid(filtered, grid);
 }
 
 
-// ***FUNCTION TO RENDER FLAGS FETCHED FROM API
-function renderGrid(list: Country[]) {
-  grid.innerHTML = list
-    // loops through each country and returns element for each item
-    .map((country) => {
-      // use png if available, or svg, or empty string so img tag dont break (? = optional chaining avoid crash)
-      const flag = country.flags?.png || country.flags?.svg || "";
-      const name = country.name.common; // gets official name
-      const population = country.population.toLocaleString(); // formats raw number so it looks nice
-      const region = country.region;
-      const capital = country.capital?.[0] ?? "N/A"; // get first capital if it exists
 
-      // render country cards and applies global styles
-      return `
-        <article class="bg-surface dark:bg-dmElement rounded-md shadow-sm hover:shadow-md transition
-                    overflow-hidden cursor-pointer"
-                    data-name="${name}">
-          
-          <img src="${flag}" alt="${name} flag" class="w-full h-40 object-cover" />
-          
-          <div class="px-6 py-6">
-            <h2 class="font-bold text-lg mb-4">${name}</h2>
-
-            <p class="text-sm mb-1">
-              <span class="font-semibold">Population:</span> ${population}
-            </p>
-            <p class="text-sm mb-1">
-              <span class="font-semibold">Region:</span> ${region}
-            </p>
-            <p class="text-sm">
-              <span class="font-semibold">Capital:</span> ${capital}
-            </p>
-          </div>
-        </article>
-      `;
-    })
-    .join("");
-}
 

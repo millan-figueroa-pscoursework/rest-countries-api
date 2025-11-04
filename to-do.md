@@ -10,21 +10,22 @@
 [x] Toggle the color scheme between light and dark mode<br>
 [ ] Deploy to Netlify
 
-### Nexst steps
+### 📝Nexst steps
 
-[x] Finish styling detail view
-[x] Fix currencies/ language render
-[x] Fix htmlelement annotation compiler issues
-[ ] Mobile view for grid and details view
-[x] Fix back button styles and functionality so it goes back to list
-[ ] Add border countries ui and functionality
-[ ] Make search case insensitive
-[x] Type event param in handleDetails
-[x] Fix styling in flag in container so it doesn't cut off
+[x] Finish styling detail view<br>
+[x] Fix currencies/ language render<br>
+[x] Fix htmlelement annotation compiler issues<br>
+[ ] Mobile view for grid and details view<br>
+[x] Fix back button styles and functionality so it goes back to list<br>
+[x] Add border countries ui and functionality<br>
+[ ] Make search case insensitive<br>
+[x] Type event param in handleDetails<br>
+[x] Fix styling in flag in container so it doesn't cut off<br>
+[x] Move renderGrid function to ui.ts
 
 ### 📌 Project Requirements
 
-##### [x] Responsive Design:
+#### [x] Responsive Design:
 
 Ensure the application is fully responsive across various devices and screen sizes.
 

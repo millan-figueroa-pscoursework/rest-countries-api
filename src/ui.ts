@@ -3,11 +3,59 @@ import { fetchCodeLookup } from "./api/countries";
 
 // ***UI FUNCTIONS
 
+// ***FUNCTION TO RENDER FLAGS FETCHED FROM API
+export function renderGrid(list: Country[], grid: HTMLElement) {
+    grid.innerHTML = list
+        // loops through each country and returns element for each item
+        .map((country) => {
+            // use png if available, or svg, or empty string so img tag dont break (? = optional chaining avoid crash)
+            const flag = country.flags?.png || country.flags?.svg || "";
+            const name = country.name.common; // gets official name
+            const population = country.population.toLocaleString(); // formats raw number so it looks nice
+            const region = country.region;
+            const capital = country.capital?.[0] ?? "N/A"; // get first capital if it exists
+
+            // render country cards and applies global styles
+            return `
+        <article class="bg-surface dark:bg-dmElement rounded-md shadow-sm hover:shadow-md transition
+                    overflow-hidden cursor-pointer"
+                    data-name="${name}">
+          
+          <img src="${flag}" alt="${name} flag" class="w-full h-40 object-cover" />
+          
+          <div class="px-6 py-6">
+            <h2 class="font-bold text-lg mb-4">${name}</h2>
+
+            <p class="text-sm mb-1">
+              <span class="font-semibold">Population:</span> ${population}
+            </p>
+            <p class="text-sm mb-1">
+              <span class="font-semibold">Region:</span> ${region}
+            </p>
+            <p class="text-sm">
+              <span class="font-semibold">Capital:</span> ${capital}
+            </p>
+          </div>
+        </article>
+      `;
+        })
+        .join("");
+}
+
 export function toggleTheme(themeToggleBtn: HTMLButtonElement) {
-    // hook up button to listen for click
     themeToggleBtn.addEventListener("click", () => {
-        // add dark to html class (toggles back and forth)
+        // toggle dark class on <html>
         document.documentElement.classList.toggle("dark");
+
+        // get icon element
+        const icon = document.getElementById("theme-icon") as HTMLElement;
+
+        // if dark mode, show filled moon, else outlined moon
+        if (document.documentElement.classList.contains("dark")) {
+            icon.setAttribute("name", "moon"); // filled moon
+        } else {
+            icon.setAttribute("name", "moon-outline"); //outlined moon
+        }
     });
 }
 
