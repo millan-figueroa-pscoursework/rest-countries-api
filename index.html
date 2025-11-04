@@ -62,15 +62,13 @@
       </div>
 
       <!-- *** REGION FILTER  -->
-      <div>
-        <select 
-          id="region-filter" 
-          class="rounded-md 
+      <div class="relative inline-block">
+        <select id="region-filter" class="appearance-none w-full rounded-md 
             bg-surface dark:bg-dmElement
             text-lmText dark:text-surface
             placeholder-lmInput/60
             hover:bg-lmBg dark:hover:bg-dmBg/60
-            px-12 py-4 my-4 md:my-0 transition">
+            px-6 md:pr-20 py-4 my-4 md:my-0 transition">
           <option value="">Filter by Region</option>
           <option>Africa</option>
           <option>Americas</option>
@@ -78,27 +76,32 @@
           <option>Europe</option>
           <option>Oceania</option>
         </select>
+        <ion-icon name="chevron-down-outline" class="pointer-events-none absolute right-4 top-1/2 pl-4 -translate-y-1/2 text-md
+            text-lmText dark:text-surface"></ion-icon>
       </div>
     </section>
 
 <!-- *** COUNTRIES GRID  -->
     <section 
       id="countries-grid" 
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-14 px-8 md:px-0 m-4 md:m-2">
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 px-8 md:px-0 m-4 md:m-2">
     </section>
 
 <!-- *** DETAILS VIEW  -->
-    <section id="detail" hidden class="h-full px-4 py-4 md:my-6">
-      <button 
-        id="back-btn" 
-        class="inline-flex items-center gap-2 rounded-md shadow-md ring-1 ring-black/5
+    <section id="detail" hidden class="min-h-screen px-4 md:px-0 py-8 md:py-16">
+    
+      <!-- Back Button -->
+      <button id="back-btn" class="inline-flex items-center gap-2 rounded-md shadow-md ring-1 ring-black/5
           bg-surface dark:bg-dmElement
           text-lmText dark:text-surface
           hover:bg-lmBg dark:hover:bg-dmBg/60
-          px-8 py-1.5 ml-4 my-4 text-md transition">
+          px-8 py-2 text-md transition">
         <span>&larr; Back</span>
       </button>
-      <div id="detail-card" class="px-2 py-12"></div>
+    
+      <!-- Detail Content -->
+      <div id="detail-card" class="mt-10 md:mt-16"></div>
+    
     </section>
   </main>
 </body>

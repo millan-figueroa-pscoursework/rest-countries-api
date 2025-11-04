@@ -18,13 +18,13 @@ export function renderGrid(list: Country[], grid: HTMLElement) {
 
             // render country cards and applies global styles
             return `
-        <article class="bg-surface dark:bg-dmElement rounded-md shadow-sm hover:shadow-md transition
+        <article class="bg-surface dark:bg-dmElement rounded-md shadow-sm hover:shadow-md hover:bg-lmBg  dark:hover:bg-dmBg/60 transition
                     overflow-hidden cursor-pointer"
                     data-name="${name}">
           
           <img src="${flag}" alt="${name} flag" class="w-full h-40 object-cover" />
           
-          <div class="px-6 py-6">
+          <div class="px-6 pt-6 pb-8">
             <h2 class="font-bold text-lg mb-4">${name}</h2>
 
             <p class="text-sm mb-1">
@@ -170,14 +170,14 @@ export async function renderDetail(
     }));
 
     detailCard.innerHTML = `
-    <div class="detail-container flex flex-col lg:flex-row md:gap-10 items-start">
+    <div class="detail-container flex flex-col lg:flex-row items-start gap-10 lg:gap-20">
       
       <!-- Flag -->
       <img src="${flag}" alt="${name} flag" class="w-full max-w-xl rounded shadow" />
 
       <!-- Text content -->
       <div class="flex flex-col gap-8 px-2 md:px-8 py-4 md:py-8">
-        <h2 class="text-2xl font-bold">${name}</h2>
+        <h2 class="text-2xl md:text-3xl font-bold">${name}</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-md leading-6">
           <div class="flex flex-col gap-2">
