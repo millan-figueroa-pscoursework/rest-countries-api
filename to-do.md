@@ -5,8 +5,8 @@
 [x] Filter countries by region<br>
 [x] Click on a country to see more detailed information on a separate page<br>
 [x] Click through to the border countries on the detail page<br>
-[ ] Back to list button functinality<br>
-[ ] Update moon icon on theme toggle<br>
+[x] Back to list button functinality<br>
+[x] Update moon icon on theme toggle<br>
 [x] Toggle the color scheme between light and dark mode<br>
 [ ] Deploy to Netlify
 
@@ -15,13 +15,16 @@
 [x] Finish styling detail view<br>
 [x] Fix currencies/ language render<br>
 [x] Fix htmlelement annotation compiler issues<br>
-[ ] Mobile view for grid and details view<br>
 [x] Fix back button styles and functionality so it goes back to list<br>
 [x] Add border countries ui and functionality<br>
-[ ] Make search case insensitive<br>
+[x] Make search case insensitive<br>
 [x] Type event param in handleDetails<br>
-[x] Fix styling in flag in container so it doesn't cut off<br>
 [x] Move renderGrid function to ui.ts
+[ ] Fix styling in flag in container so it doesn't cut off<br>
+[ ] Add hover styles on flag cards and border countries<br>
+[ ] Fix spacing on mobile grid and details views<br>
+[ ] Fix text size on small view<br>
+[ ] Answer reflections questions<br>
 
 ### 📌 Project Requirements
 

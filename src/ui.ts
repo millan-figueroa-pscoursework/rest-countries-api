@@ -3,7 +3,8 @@ import { fetchCodeLookup } from "./api/countries";
 
 // ***UI FUNCTIONS
 
-// ***FUNCTION TO RENDER FLAGS FETCHED FROM API
+// *** Render Flags Grid
+
 export function renderGrid(list: Country[], grid: HTMLElement) {
     grid.innerHTML = list
         // loops through each country and returns element for each item
@@ -42,23 +43,27 @@ export function renderGrid(list: Country[], grid: HTMLElement) {
         .join("");
 }
 
+
+
+// *** Toggles Dark/Light Mode
+
 export function toggleTheme(themeToggleBtn: HTMLButtonElement) {
     themeToggleBtn.addEventListener("click", () => {
         // toggle dark class on <html>
         document.documentElement.classList.toggle("dark");
-
         // get icon element
         const icon = document.getElementById("theme-icon") as HTMLElement;
-
         // if dark mode, show filled moon, else outlined moon
         if (document.documentElement.classList.contains("dark")) {
-            icon.setAttribute("name", "moon"); // filled moon
+            icon.setAttribute("name", "moon");
         } else {
-            icon.setAttribute("name", "moon-outline"); //outlined moon
+            icon.setAttribute("name", "moon-outline");
         }
     });
 }
 
+
+// *** Setup Function to Render Details
 
 // function sets up click behavior thru event delegation so every card doesn't need its own listener
 export function handleDetail(
@@ -78,15 +83,20 @@ export function handleDetail(
         detailCard: HTMLDivElement,
         countries: Country[]
     ) => void) {
+
+    // remember scroll position before we jump into detail view
+    let scrollPos = 0;
+
     // listens for clicks on the grid
     grid.addEventListener("click", (event) => {
+
         // finds clicked card from article w data-name
         const card = (event.target as HTMLElement).closest<HTMLElement>("article[data-name]");
         if (!card) return; // exit if no data name
 
         //get country name from dataset
         const countryName = card.dataset.name;
-        if (!countryName) return
+        if (!countryName) return;
 
         // find matching Country object
         const country = countries.find(
@@ -94,15 +104,26 @@ export function handleDetail(
         );
         if (!country) return;
 
-        // send the Country data to renderDetail
-        renderDetail(country, controls, grid, detailSection, detailCard, countries);
+        // save scroll position before switching views
+        scrollPos = window.scrollY;
+
+        void renderDetail(country, controls, grid, detailSection, detailCard, countries);
     });
-    // back button takes u back to grid
+
+    // back button takes user back to grid
     backBtn.addEventListener("click", () => {
-        location.reload();
+        // show grid + controls again, hide detail
+        controls.hidden = false;
+        grid.hidden = false;
+        detailSection.hidden = true;
+
+        // restore scroll position to where user left off
+        window.scrollTo({ top: scrollPos, behavior: "instant" as ScrollBehavior });
     });
 }
 
+
+// *** Displays Country Details
 
 // toggles detail view by hiding main grid and controls and renders the detail contents
 export async function renderDetail(
@@ -205,7 +226,7 @@ export async function renderDetail(
                 const code = btn.getAttribute("data-border");
                 if (!code) return;
 
-                // find the matching country by name using the code map
+                // find the matching country by name 
                 const neighborName = codeLookup[code];
                 if (!neighborName) return;
 
@@ -216,9 +237,6 @@ export async function renderDetail(
 
                 // show clicked border country's details
                 void renderDetail(neighbor, controls, grid, detailSection, detailCard, countries);
-
-                // optional UX: scroll to top
-                window.scrollTo({ top: 0, behavior: "smooth" });
             });
         });
 }

@@ -4,7 +4,7 @@ import { APIError, CountryLoadError } from "./utils/errorHandler";
 import type { Country } from "./models/interfaces";
 import { handleDetail, renderDetail, toggleTheme, renderGrid } from "./ui";
 
-// Select DOM elements and add generic for type annotation
+// Select DOM elements and type annotate
 const themeToggleBtn = document.querySelector("#theme-toggle-btn") as HTMLButtonElement;
 const controls = document.querySelector("#controls") as HTMLElement;
 const searchInput = document.querySelector("#search-input") as HTMLInputElement;
@@ -17,7 +17,9 @@ const backBtn = document.querySelector("#back-btn") as HTMLButtonElement;
 
 let countries: Country[] = [];
 
-// get country data from API
+
+// *** Fetch Country Data from API
+
 fetchCountries()
   .then(data => {
     // when data arrives, save fetched countries to countries variable
@@ -54,17 +56,20 @@ fetchCountries()
   });
 
 
-// ***FUNCTIONS TO SEARCH COUNTRIES
+// *** Setup Search Function
+
 function countriesSearch() {
   // sets up event listener to listen for selected region
   searchInput.addEventListener("change", applySearch);
 }
 
+// *** Setup Search Function
+
 function applySearch() {
   // reads input value, removes spaces 
   const input = searchInput.value.trim().toLowerCase();
 
-  // use filter to loop thru countries array and compare input to "common" country name. 
+  // use filter to loop thru countries array and compare input to country name 
   const result = countries.filter(country =>
     country.name.common.toLowerCase().includes(input)
   );
@@ -73,11 +78,14 @@ function applySearch() {
 }
 
 
-// ***FUNCTIONS TO FILTER COUNTRIES
+// *** Setup Filter Function
+
 function countriesFilter() {
   // sets up event listener to listen for selected region
   regionFilter.addEventListener("change", applyFilters);
 }
+
+// *** Filters Based on Region
 
 function applyFilters() {
   // reads selected value
