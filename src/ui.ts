@@ -170,14 +170,14 @@ export async function renderDetail(
     }));
 
     detailCard.innerHTML = `
-    <div class="detail-container flex flex-col lg:flex-row gap-20 items-start px-4 py-4">
+    <div class="detail-container flex flex-col lg:flex-row md:gap-10 items-start">
       
       <!-- Flag -->
       <img src="${flag}" alt="${name} flag" class="w-full max-w-xl rounded shadow" />
 
       <!-- Text content -->
-      <div class="flex flex-col gap-8 py-4">
-        <h2 class="text-3xl font-bold">${name}</h2>
+      <div class="flex flex-col gap-8 px-2 md:px-8 py-4 md:py-8">
+        <h2 class="text-2xl font-bold">${name}</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-md leading-6">
           <div class="flex flex-col gap-2">
@@ -196,15 +196,19 @@ export async function renderDetail(
         </div>
 
         <!-- Border Countries -->
-        <div class="flex flex-col md:flex-row md:items-center gap-3">
+        <div class="flex flex-col md:flex-row md:items-center gap-2">
           <strong>Border Countries:</strong>
-          <div class="flex flex-wrap gap-2">
+          <div class="flex flex-wrap gap-2 py-4">
             ${borderItems.length
             ? borderItems
                 .map(
                     b => `
                         <button 
-                          class="border border-gray-300 dark:border-gray-700 px-4 py-1 rounded shadow-sm"
+                          class="inline-flex items-center gap-2 rounded-md shadow-md ring-1 ring-black/5
+          bg-surface dark:bg-dmElement
+          text-lmText dark:text-surface
+          hover:bg-lmBg dark:hover:bg-dmBg/60
+          px-6 py-1 text-sm transition"
                           data-border="${b.code}">
                           ${b.name}
                         </button>`

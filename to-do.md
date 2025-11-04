@@ -20,10 +20,12 @@
 [x] Make search case insensitive<br>
 [x] Type event param in handleDetails<br>
 [x] Move renderGrid function to ui.ts
-[ ] Fix styling in flag in container so it doesn't cut off<br>
-[ ] Add hover styles on flag cards and border countries<br>
-[ ] Fix spacing on mobile grid and details views<br>
-[ ] Fix text size on small view<br>
+[x] Fix flag size in detail view<br>
+[x] Fix styling in flag in container so it doesn't cut off<br>
+[ ] Add padding in filter box<br>
+[x] Add hover styles on flag cards and border countries<br>
+[x] Fix spacing on mobile grid and details views<br>
+[x] Fix text size on small view<br>
 [ ] Answer reflections questions<br>
 
 ### 📌 Project Requirements
