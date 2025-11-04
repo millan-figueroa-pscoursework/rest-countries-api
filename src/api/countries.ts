@@ -8,7 +8,8 @@ const DISPLAY_FIELDS =
 // stores country data from ui and a lookup table for border codes
 let cacheCountries: Country[] | null = null;
 
-// main data fetch
+// *** Main Data Fetch ***
+
 export async function fetchCountries(): Promise<Country[]> {
     if (cacheCountries) return cacheCountries;
 
@@ -27,10 +28,12 @@ export async function fetchCountries(): Promise<Country[]> {
 }
 
 
-// this var will hold the 'lookup' object intial value is null, avoids refetching on every click
+// hold 'lookup' object intial value is null, avoids refetching on every click
 let cacheCodeLookup: Record<string, string> | null = null;
 
-// second fetch - does a small request and code -> name lookup
+
+// *** Second Data Fetch ***
+// makes a small request and code -> name lookup
 export async function fetchCodeLookup(): Promise<Record<string, string>> {
     if (cacheCodeLookup) return cacheCodeLookup;
     // second tiny call, only 2 fields
@@ -39,10 +42,10 @@ export async function fetchCodeLookup(): Promise<Record<string, string>> {
     );
     if (!response.ok) throw new APIError("API request failed", response.status);
 
-    // annotate rows variable as an array where each item is an object with a cca3 string and a name object that contains a common string so the right properties are accessed
+    // annotate rows variable as an array where each item is an object with a cca3 string and a name object 
     const rows: CountryCodeRow[] = await response.json();
 
-    // convert array into lookup object to get country names from values
+    // convert array into 'lookup object' to get country names from values
     const lookup: Record<string, string> = {};
     rows.forEach(r => {
         lookup[r.cca3] = r.name.common;
@@ -52,4 +55,3 @@ export async function fetchCodeLookup(): Promise<Record<string, string>> {
     return cacheCodeLookup;
 }
 
-"Fix border countries not showing up. Refactors countries.ts to limit main api call to 10 fields, handles calling country codes separately and saves codes and corresponding country name to lookup object. Caches list for speed, updates buttons to navigate to that countrys detail card."
