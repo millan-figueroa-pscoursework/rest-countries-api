@@ -61,3 +61,9 @@ export async function fetchCodeLookup(): Promise<Record<string, string>> {
     cacheCodeLookup = lookup;
     return cacheCodeLookup;
 }
+
+// test
+(async () => {
+    const countries = await fetchCountries();
+    console.log(countries.slice(0, 5)); // first 5 countries
+})();

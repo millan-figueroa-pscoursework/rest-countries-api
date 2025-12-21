@@ -22,5 +22,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "utility.ts"]
+  "include": ["src", "utility.ts", "tempTestQuick.ts"],
+  "exclude": ["node_modules", "tempTestQuick.js"]
 }
