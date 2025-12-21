@@ -32,13 +32,13 @@
 
 - [ ] **Verify API fetch**
 
-  - Use `tempTestQuick.js` to confirm you can get country data.
+  - Use `tempTestQuick.js` to confirm we can get country data.
   - Ensure the app-level mapping (`toCountry`) works.
 
 - [ ] **Create CountryImpact model**
 
   - Define a new TypeScript interface `CountryImpact`.
-  - Include fields for the activism-related metrics you care about:
+  - Include fields for the activism-related metrics we care about:
     - AI data centers
     - Water insecurity
     - High national debt
@@ -48,12 +48,12 @@
 
 - [ ] **Integrate CountryImpact with Country**
 
-  - Add a property like `impact?: CountryImpact` to your app-level `Country` model.
+  - Add a property like `impact?: CountryImpact` to the app-level `Country` model.
   - Prepare to populate it with external datasets.
 
 - [ ] **Find / gather datasets**
 
-  - Collect data for each of your metrics.
+  - Collect data for each of the metrics.
   - Keep datasets in a consistent shape for easy mapping to countries.
 
 - [ ] **Write data mappers**
