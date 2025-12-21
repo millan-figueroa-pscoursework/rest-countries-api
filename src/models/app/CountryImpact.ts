@@ -1,4 +1,4 @@
-import type { Country } from "./api_interfaces";
+import type { Country } from "./Country";
 
 interface CountryImpact {
     country: Country;

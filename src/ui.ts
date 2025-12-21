@@ -1,4 +1,4 @@
-import type { Country } from "./models/api_interfaces";
+import type { Country } from "./models/api/api_interfaces";
 import { fetchCodeLookup } from "./api/countries";
 
 // ***UI FUNCTIONS

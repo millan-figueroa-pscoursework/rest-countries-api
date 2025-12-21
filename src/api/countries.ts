@@ -1,5 +1,5 @@
 import { APIError, CountryLoadError } from "../utils/errorHandler";
-import type { Country, CountryCodeRow } from "../models/api_interfaces";
+import type { Country, CountryCodeRow } from "../models/api/api_interfaces";
 
 // rest api caps at 10 fields, calling cca3 (country codes) separately
 const DISPLAY_FIELDS =
