@@ -28,40 +28,47 @@
 [x] Fix text size on small view<br>
 [ ] Answer reflections questions<br>
 
-### 📌 Project Requirements
+# Next Steps: Rest Countries API → Climate Justice / Activism App
 
-#### [x] Responsive Design:
+- [ ] **Verify API fetch**
 
-Ensure the application is fully responsive across various devices and screen sizes.
+  - Use `tempTestQuick.js` to confirm you can get country data.
+  - Ensure the app-level mapping (`toCountry`) works.
 
-#### [x] API Integration:
+- [ ] **Create CountryImpact model**
 
-Effectively integrate the specified API to fetch and display data dynamically.
+  - Define a new TypeScript interface `CountryImpact`.
+  - Include fields for the activism-related metrics you care about:
+    - AI data centers
+    - Water insecurity
+    - High national debt
+    - Weak tech regulation
+    - Climate change impact
+    - Poverty rate
 
-#### [x] Interactivity:
+- [ ] **Integrate CountryImpact with Country**
 
-Implement interactive elements such as search functionality, form validation, and dynamic content updates.
+  - Add a property like `impact?: CountryImpact` to your app-level `Country` model.
+  - Prepare to populate it with external datasets.
 
-#### [x] Accessibility:
+- [ ] **Find / gather datasets**
 
-Follow best practices to make the application accessible to all users.
+  - Collect data for each of your metrics.
+  - Keep datasets in a consistent shape for easy mapping to countries.
 
-#### [x] Version Control:
+- [ ] **Write data mappers**
 
-Use Git for version control, with regular commits and a well-documented GitHub repository.
+  - Functions to merge raw dataset info into each `CountryImpact` object.
+  - Handle missing data gracefully.
 
-#### [x] Documentation:
+- [ ] **Test combined data**
 
-Include a comprehensive README.md file detailing the project setup, features, and any additional notes.
+  - Create a test script to fetch countries and attach impact data.
+  - Log first few entries to verify correctness.
 
-## 📋 Submission Requirements
-
-#### ☐ GitHub Repository:
-
-Host your project on GitHub with all source code and assets.
-Ensure the repository is public and includes a detailed README.md file.
-
-#### ☐ Live Demo:
-
-Deploy your application using a platform like GitHub Pages, Netlify, or Vercel.
-Provide a link to the live demo in your README.md file.
+- [ ] **Start building UI / visualization**
+  - Display countries with associated impact data.
+  - Consider adding:
+    - Maps of affected regions
+    - Highlighting by metric (e.g., high debt, water insecurity)
+    - Filter/sort functionality
