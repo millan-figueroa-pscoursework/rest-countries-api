@@ -1,4 +1,4 @@
-import type { Country } from "./models/interfaces";
+import type { Country } from "./models/api_interfaces";
 import { fetchCodeLookup } from "./api/countries";
 
 // ***UI FUNCTIONS
@@ -6,18 +6,18 @@ import { fetchCodeLookup } from "./api/countries";
 // *** Render Flags Grid
 
 export function renderGrid(list: Country[], grid: HTMLElement) {
-    grid.innerHTML = list
-        // loops through each country and returns element for each item
-        .map((country) => {
-            // use png if available, or svg, or empty string so img tag dont break (? = optional chaining avoid crash)
-            const flag = country.flags?.png || country.flags?.svg || "";
-            const name = country.name.common; // gets official name
-            const population = country.population.toLocaleString(); // formats raw number so it looks nice
-            const region = country.region;
-            const capital = country.capital?.[0] ?? "N/A"; // get first capital if it exists
+  grid.innerHTML = list
+    // loops through each country and returns element for each item
+    .map((country) => {
+      // use png if available, or svg, or empty string so img tag dont break (? = optional chaining avoid crash)
+      const flag = country.flags?.png || country.flags?.svg || "";
+      const name = country.name.common; // gets official name
+      const population = country.population.toLocaleString(); // formats raw number so it looks nice
+      const region = country.region;
+      const capital = country.capital?.[0] ?? "N/A"; // get first capital if it exists
 
-            // render country cards and applies global styles
-            return `
+      // render country cards and applies global styles
+      return `
         <article class="bg-surface dark:bg-dmElement rounded-md shadow-sm hover:shadow-md hover:bg-lmBg  dark:hover:bg-dmBg/60 transition
                     overflow-hidden cursor-pointer"
                     data-name="${name}">
@@ -39,8 +39,8 @@ export function renderGrid(list: Country[], grid: HTMLElement) {
           </div>
         </article>
       `;
-        })
-        .join("");
+    })
+    .join("");
 }
 
 
@@ -48,18 +48,18 @@ export function renderGrid(list: Country[], grid: HTMLElement) {
 // *** Toggles Dark/Light Mode
 
 export function toggleTheme(themeToggleBtn: HTMLButtonElement) {
-    themeToggleBtn.addEventListener("click", () => {
-        // toggle dark class on <html>
-        document.documentElement.classList.toggle("dark");
-        // get icon element
-        const icon = document.getElementById("theme-icon") as HTMLElement;
-        // if dark mode, show filled moon, else outlined moon
-        if (document.documentElement.classList.contains("dark")) {
-            icon.setAttribute("name", "moon");
-        } else {
-            icon.setAttribute("name", "moon-outline");
-        }
-    });
+  themeToggleBtn.addEventListener("click", () => {
+    // toggle dark class on <html>
+    document.documentElement.classList.toggle("dark");
+    // get icon element
+    const icon = document.getElementById("theme-icon") as HTMLElement;
+    // if dark mode, show filled moon, else outlined moon
+    if (document.documentElement.classList.contains("dark")) {
+      icon.setAttribute("name", "moon");
+    } else {
+      icon.setAttribute("name", "moon-outline");
+    }
+  });
 }
 
 
@@ -67,59 +67,59 @@ export function toggleTheme(themeToggleBtn: HTMLButtonElement) {
 
 // function sets up click behavior thru event delegation so every card doesn't need its own listener
 export function handleDetail(
-    // pass in params from main.ts
+  // pass in params from main.ts
+  controls: HTMLElement,
+  grid: HTMLElement,
+  detailSection: HTMLElement,
+  detailCard: HTMLDivElement,
+  backBtn: HTMLButtonElement,
+  countries: Country[],
+  // callback function that shows country deets
+  renderDetail: (
+    country: Country,
     controls: HTMLElement,
     grid: HTMLElement,
     detailSection: HTMLElement,
     detailCard: HTMLDivElement,
-    backBtn: HTMLButtonElement,
-    countries: Country[],
-    // callback function that shows country deets
-    renderDetail: (
-        country: Country,
-        controls: HTMLElement,
-        grid: HTMLElement,
-        detailSection: HTMLElement,
-        detailCard: HTMLDivElement,
-        countries: Country[]
-    ) => void) {
+    countries: Country[]
+  ) => void) {
 
-    // remember scroll position before we jump into detail view
-    let scrollPos = 0;
+  // remember scroll position before we jump into detail view
+  let scrollPos = 0;
 
-    // listens for clicks on the grid
-    grid.addEventListener("click", (event) => {
+  // listens for clicks on the grid
+  grid.addEventListener("click", (event) => {
 
-        // finds clicked card from article w data-name
-        const card = (event.target as HTMLElement).closest<HTMLElement>("article[data-name]");
-        if (!card) return; // exit if no data name
+    // finds clicked card from article w data-name
+    const card = (event.target as HTMLElement).closest<HTMLElement>("article[data-name]");
+    if (!card) return; // exit if no data name
 
-        //get country name from dataset
-        const countryName = card.dataset.name;
-        if (!countryName) return;
+    //get country name from dataset
+    const countryName = card.dataset.name;
+    if (!countryName) return;
 
-        // find matching Country object
-        const country = countries.find(
-            (c) => c.name.common === countryName
-        );
-        if (!country) return;
+    // find matching Country object
+    const country = countries.find(
+      (c) => c.name.common === countryName
+    );
+    if (!country) return;
 
-        // save scroll position before switching views
-        scrollPos = window.scrollY;
+    // save scroll position before switching views
+    scrollPos = window.scrollY;
 
-        void renderDetail(country, controls, grid, detailSection, detailCard, countries);
-    });
+    void renderDetail(country, controls, grid, detailSection, detailCard, countries);
+  });
 
-    // back button takes user back to grid
-    backBtn.addEventListener("click", () => {
-        // show grid + controls again, hide detail
-        controls.hidden = false;
-        grid.hidden = false;
-        detailSection.hidden = true;
+  // back button takes user back to grid
+  backBtn.addEventListener("click", () => {
+    // show grid + controls again, hide detail
+    controls.hidden = false;
+    grid.hidden = false;
+    detailSection.hidden = true;
 
-        // restore scroll position to where user left off
-        window.scrollTo({ top: scrollPos, behavior: "instant" as ScrollBehavior });
-    });
+    // restore scroll position to where user left off
+    window.scrollTo({ top: scrollPos, behavior: "instant" as ScrollBehavior });
+  });
 }
 
 
@@ -127,49 +127,49 @@ export function handleDetail(
 
 // toggles detail view by hiding main grid and controls and renders the detail contents
 export async function renderDetail(
-    country: Country,
-    controls: HTMLElement,
-    grid: HTMLElement,
-    detailSection: HTMLElement,
-    detailCard: HTMLDivElement,
-    countries: Country[]
+  country: Country,
+  controls: HTMLElement,
+  grid: HTMLElement,
+  detailSection: HTMLElement,
+  detailCard: HTMLDivElement,
+  countries: Country[]
 ) {
-    // hide grid and controls
-    controls.hidden = true;
-    grid.hidden = true;
-    detailSection.hidden = false;
+  // hide grid and controls
+  controls.hidden = true;
+  grid.hidden = true;
+  detailSection.hidden = false;
 
-    // assigns available detail view fields to variables
-    const flag = country.flags?.svg || country.flags?.png || "";
-    const name = country.name.common;
-    const nativeName =
-        country.name.nativeName
-            ? Object.values(country.name.nativeName)[0]?.common
-            : name;
-    const population = country.population.toLocaleString();
-    const region = country.region || "N/A";
-    const subRegion = country.subregion || "N/A";
-    const capital = country.capital?.[0] ?? "N/A";
-    const tld = country.tld?.[0] ?? "N/A";
-    const currencies = country.currencies
-        ? Object.values(country.currencies)
-            .map(c => `${c.name}${c.symbol ? ` (${c.symbol})` : ""}`)
-            .join(", ")
-        : "N/A";
-    const languages = country.languages
-        ? Object.values(country.languages).join(", ")
-        : "N/A";
+  // assigns available detail view fields to variables
+  const flag = country.flags?.svg || country.flags?.png || "";
+  const name = country.name.common;
+  const nativeName =
+    country.name.nativeName
+      ? Object.values(country.name.nativeName)[0]?.common
+      : name;
+  const population = country.population.toLocaleString();
+  const region = country.region || "N/A";
+  const subRegion = country.subregion || "N/A";
+  const capital = country.capital?.[0] ?? "N/A";
+  const tld = country.tld?.[0] ?? "N/A";
+  const currencies = country.currencies
+    ? Object.values(country.currencies)
+      .map(c => `${c.name}${c.symbol ? ` (${c.symbol})` : ""}`)
+      .join(", ")
+    : "N/A";
+  const languages = country.languages
+    ? Object.values(country.languages).join(", ")
+    : "N/A";
 
-    // looks up border codes returned by api
-    const codeLookup = await fetchCodeLookup(); // call once; later calls use cache
+  // looks up border codes returned by api
+  const codeLookup = await fetchCodeLookup(); // call once; later calls use cache
 
-    const borders = country.borders ?? [];
-    const borderItems = borders.map(code => ({
-        code,
-        name: codeLookup[code] ?? code// fallback to code if not found
-    }));
+  const borders = country.borders ?? [];
+  const borderItems = borders.map(code => ({
+    code,
+    name: codeLookup[code] ?? code// fallback to code if not found
+  }));
 
-    detailCard.innerHTML = `
+  detailCard.innerHTML = `
     <div class="detail-container flex flex-col lg:flex-row items-start gap-10 lg:gap-20">
       
       <!-- Flag -->
@@ -200,9 +200,9 @@ export async function renderDetail(
           <strong>Border Countries:</strong>
           <div class="flex flex-wrap gap-2 py-4">
             ${borderItems.length
-            ? borderItems
-                .map(
-                    b => `
+      ? borderItems
+        .map(
+          b => `
                         <button 
                           class="inline-flex items-center gap-2 rounded-md shadow-md ring-1 ring-black/5
           bg-surface dark:bg-dmElement
@@ -212,35 +212,35 @@ export async function renderDetail(
                           data-border="${b.code}">
                           ${b.name}
                         </button>`
-                )
-                .join("")
-            : `<span class="opacity-70">None</span>`
-        }
+        )
+        .join("")
+      : `<span class="opacity-70">None</span>`
+    }
           </div>
         </div>
       </div>
     </div>
   `;
 
-    // click to show that country's detail card
-    detailCard
-        .querySelectorAll<HTMLButtonElement>('button[data-border]')
-        .forEach(btn => {
-            btn.addEventListener("click", () => {
-                const code = btn.getAttribute("data-border");
-                if (!code) return;
+  // click to show that country's detail card
+  detailCard
+    .querySelectorAll<HTMLButtonElement>('button[data-border]')
+    .forEach(btn => {
+      btn.addEventListener("click", () => {
+        const code = btn.getAttribute("data-border");
+        if (!code) return;
 
-                // find the matching country by name 
-                const neighborName = codeLookup[code];
-                if (!neighborName) return;
+        // find the matching country by name 
+        const neighborName = codeLookup[code];
+        if (!neighborName) return;
 
-                const neighbor = countries.find(
-                    c => c.name.common === neighborName
-                );
-                if (!neighbor) return;
+        const neighbor = countries.find(
+          c => c.name.common === neighborName
+        );
+        if (!neighbor) return;
 
-                // show clicked border country's details
-                void renderDetail(neighbor, controls, grid, detailSection, detailCard, countries);
-            });
-        });
+        // show clicked border country's details
+        void renderDetail(neighbor, controls, grid, detailSection, detailCard, countries);
+      });
+    });
 }

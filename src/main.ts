@@ -1,7 +1,7 @@
 import "./style.css";
 import { fetchCountries } from "./api/countries";
 import { APIError, CountryLoadError } from "./utils/errorHandler";
-import type { Country } from "./models/interfaces";
+import type { Country } from "./models/api_interfaces";
 import { handleDetail, renderDetail, toggleTheme, renderGrid } from "./ui";
 
 // Select DOM elements and type annotate
