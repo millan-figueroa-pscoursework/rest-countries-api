@@ -5,7 +5,7 @@ type Level = "low" | "medium" | "high" | "unknown";
 type Strength = "strong" | "moderate" | "weak" | "unknown";
 
 
-interface CountryImpact {
+export interface CountryImpact {
     country: Country;
 
     // digital infrastructure
