@@ -1,13 +1,24 @@
 import type { Country } from "./Country";
 
+// assign levels to var
+type Level = "low" | "medium" | "high" | "unknown";
+type Strength = "strong" | "moderate" | "weak" | "unknown";
+
+
 interface CountryImpact {
     country: Country;
 
-    dataCenterPresence: 'none' | 'low' | 'high';
-    waterInsecurity: 'low' | 'medium' | 'high';
-    climateRisk: 'low' | 'medium' | 'high';
+    // digital infrastructure
+    aiDataCenterPresence: Level;
 
-    nationalDebtRisk: 'low' | 'medium' | 'high';
-    povertyRate: 'low' | 'medium' | 'high';
-    techRegulationStrength: 'weak' | 'moderate' | 'strong';
+    // environmental conditions
+    waterInsecurity: Level;
+    climateRisk: Level;
+
+    // econonic conditions
+    nationalDebtRisk: Level;
+    povertyRate: Level;
+
+    // governance/ regulation
+    techRegulationStrength: Strength;
 }

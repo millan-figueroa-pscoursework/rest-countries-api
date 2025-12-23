@@ -1,0 +1,74 @@
+[
+  {
+    "countryCode": "USA",
+    "aiDataCenterPresence": "high",
+    "waterInsecurity": "medium",
+    "climateRisk": "medium",
+    "nationalDebtRisk": "high",
+    "povertyRate": "medium",
+    "techRegulationStrength": "moderate"
+  },
+  {
+    "countryCode": "IRL",
+    "aiDataCenterPresence": "high",
+    "waterInsecurity": "low",
+    "climateRisk": "low",
+    "nationalDebtRisk": "medium",
+    "povertyRate": "low",
+    "techRegulationStrength": "strong"
+  },
+  {
+    "countryCode": "NLD",
+    "aiDataCenterPresence": "high",
+    "waterInsecurity": "low",
+    "climateRisk": "low",
+    "nationalDebtRisk": "medium",
+    "povertyRate": "low",
+    "techRegulationStrength": "strong"
+  },
+  {
+    "countryCode": "SGP",
+    "aiDataCenterPresence": "high",
+    "waterInsecurity": "medium",
+    "climateRisk": "medium",
+    "nationalDebtRisk": "medium",
+    "povertyRate": "low",
+    "techRegulationStrength": "strong"
+  },
+  {
+    "countryCode": "KEN",
+    "aiDataCenterPresence": "low",
+    "waterInsecurity": "high",
+    "climateRisk": "high",
+    "nationalDebtRisk": "high",
+    "povertyRate": "high",
+    "techRegulationStrength": "weak"
+  },
+  {
+    "countryCode": "IND",
+    "aiDataCenterPresence": "high",
+    "waterInsecurity": "high",
+    "climateRisk": "high",
+    "nationalDebtRisk": "medium",
+    "povertyRate": "high",
+    "techRegulationStrength": "weak"
+  },
+  {
+    "countryCode": "NGA",
+    "aiDataCenterPresence": "low",
+    "waterInsecurity": "high",
+    "climateRisk": "high",
+    "nationalDebtRisk": "high",
+    "povertyRate": "high",
+    "techRegulationStrength": "weak"
+  },
+  {
+    "countryCode": "CHL",
+    "aiDataCenterPresence": "medium",
+    "waterInsecurity": "high",
+    "climateRisk": "high",
+    "nationalDebtRisk": "medium",
+    "povertyRate": "medium",
+    "techRegulationStrength": "moderate"
+  }
+]
