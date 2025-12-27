@@ -1,8 +1,8 @@
 import "./style.css";
 import { fetchCountries } from "./api/countries";
 import { APIError, CountryLoadError } from "./utils/errorHandler";
-import type { Country } from "./models/api/api_interfaces";
-import { handleDetail, renderDetail, toggleTheme, renderGrid } from "./ui";
+import type { Country } from "./models/app/Country";
+import { handleDetail, renderDetail, toggleTheme, renderGrid } from "./ui/ui"
 
 // Select DOM elements and type annotate
 const themeToggleBtn = document.querySelector("#theme-toggle-btn") as HTMLButtonElement;
@@ -71,7 +71,7 @@ function applySearch() {
 
   // use filter to loop thru countries array and compare input to country name 
   const result = countries.filter(country =>
-    country.name.common.toLowerCase().includes(input)
+    country.displayName.toLowerCase().includes(input)
   );
   // console.log(result);
   renderGrid(result, grid)
