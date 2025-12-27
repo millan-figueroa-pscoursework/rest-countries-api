@@ -30,7 +30,7 @@
 
 # Next Steps: Rest Countries API → Climate Justice / Activism App
 
-- [ ] **Verify API fetch**
+- [x] **Verify API fetch**
 
   - Use `tempTestQuick.js` to confirm we can get country data.
   - Ensure the app-level mapping (`toCountry`) works.

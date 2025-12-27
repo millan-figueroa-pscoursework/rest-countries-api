@@ -15,7 +15,7 @@ export interface Name {
     nativeName?: Record<string, NativeNameEntry>;
 }
 
-export interface Country {
+export interface ApiCountry {
     flags: Flags;
     name: Name;
     population: number;
