@@ -1,7 +1,6 @@
 import type { Country } from "./Country";
-import type { CountryImpact } from "./CountryImpact"
+import type { CountryImpact } from "./CountryImpact";
 import seed from "../../data/countryImpactSeed.json";
-
 
 type SeedRow = {
     countryCode: string;
@@ -13,11 +12,19 @@ type SeedRow = {
     techRegulationStrength: CountryImpact["techRegulationStrength"];
 };
 
-const seedRows = seed as SeedRow[];
+// if ts complains here, change to: `seed as unknown as SeedRow[]`
+const seedRows = seed as unknown as SeedRow[];
 
 function buildSeedLookup(rows: SeedRow[]): Record<string, SeedRow> {
     const lookup: Record<string, SeedRow> = {};
-    for (const row of rows) lookup[row.countryCode] = row;
+
+    for (const row of rows) {
+        if (lookup[row.countryCode]) {
+            console.warn(`Duplicate seed row for countryCode: ${row.countryCode}`);
+        }
+        lookup[row.countryCode] = row;
+    }
+
     return lookup;
 }
 
