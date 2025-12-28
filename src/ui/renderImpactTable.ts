@@ -15,46 +15,83 @@ export function renderImpactTable(rows: CountryImpact[]) {
 
     mount.innerHTML = `
     <div class="mt-10">
-      <div class="flex items-end justify-between mb-3">
-        <div>
-          <h2 class="text-xl font-semibold">Extraction Atlas — Seeded Impact Table</h2>
-          <p class="text-sm opacity-70">Showing ${seeded.length} seeded countries</p>
-        </div>
-      </div>
-
-      <div class="overflow-auto rounded-xl border">
-        <table class="min-w-[900px] w-full text-sm">
-          <thead class="sticky top-0 bg-white">
-            <tr class="text-left border-b">
-              <th class="p-3">Country</th>
-              <th class="p-3">Region</th>
-              <th class="p-3">AI DC</th>
-              <th class="p-3">Water</th>
-              <th class="p-3">Climate</th>
-              <th class="p-3">Debt</th>
-              <th class="p-3">Poverty</th>
-              <th class="p-3">Regulation</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${seeded.map(r => `
-              <tr class="border-b hover:bg-black/5">
-                <td class="p-3 font-medium flex items-center gap-2">
-                  <img class="h-4 w-6 rounded-sm" src="${r.country.flagUrl}" alt="" />
-                  ${r.country.displayName}
-                </td>
-                <td class="p-3">${r.country.region}</td>
-                <td class="p-3">${r.aiDataCenterPresence}</td>
-                <td class="p-3">${r.waterInsecurity}</td>
-                <td class="p-3">${r.climateRisk}</td>
-                <td class="p-3">${r.nationalDebtRisk}</td>
-                <td class="p-3">${r.povertyRate}</td>
-                <td class="p-3">${r.techRegulationStrength}</td>
-              </tr>
-            `).join("")}
-          </tbody>
-        </table>
-      </div>
+  <div class="flex items-end justify-between mb-3">
+    <div>
+      <h2 class="text-xl font-semibold text-lmText dark:text-dmText">
+        Extraction Atlas — Seeded Impact Table
+      </h2>
+      <p class="text-sm text-lmInput dark:text-dmText/70">
+        Showing ${seeded.length} seeded countries
+      </p>
     </div>
+  </div>
+
+  <div
+    class="
+      overflow-auto rounded-xl border
+      bg-surface dark:bg-dmElement
+      border-lmInput/30 dark:border-dmText/10
+    "
+  >
+    <table class="min-w-[900px] w-full text-sm">
+      <thead
+        class="
+          sticky top-0 z-10
+          bg-surface/95 dark:bg-dmElement/95
+          backdrop-blur
+          border-b border-lmInput/30 dark:border-dmText/10
+        "
+      >
+        <tr class="text-left">
+          <th class="p-3 font-semibold text-lmText dark:text-dmText">Country</th>
+          <th class="p-3 font-semibold text-lmText dark:text-dmText">Region</th>
+          <th class="p-3 font-semibold text-lmText dark:text-dmText">AI DC</th>
+          <th class="p-3 font-semibold text-lmText dark:text-dmText">Water</th>
+          <th class="p-3 font-semibold text-lmText dark:text-dmText">Climate</th>
+          <th class="p-3 font-semibold text-lmText dark:text-dmText">Debt</th>
+          <th class="p-3 font-semibold text-lmText dark:text-dmText">Poverty</th>
+          <th class="p-3 font-semibold text-lmText dark:text-dmText">Regulation</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        ${seeded
+            .map(
+                (r) => `
+          <tr
+            class="
+              border-b border-lmInput/20 dark:border-dmText/10
+              hover:bg-lmBg/60 dark:hover:bg-dmBg/40
+              transition-colors
+            "
+          >
+            <td class="p-3 font-medium text-lmText dark:text-dmText">
+              <div class="flex items-center gap-2">
+                <img
+                  class="h-4 w-6 rounded-sm border border-lmInput/30 dark:border-dmText/10"
+                  src="${r.country.flagUrl}"
+                  alt=""
+                />
+                <span>${r.country.displayName}</span>
+              </div>
+            </td>
+
+            <td class="p-3 text-lmText/80 dark:text-dmText/80">${r.country.region}</td>
+
+            <td class="p-3 text-lmText dark:text-dmText">${r.aiDataCenterPresence}</td>
+            <td class="p-3 text-lmText dark:text-dmText">${r.waterInsecurity}</td>
+            <td class="p-3 text-lmText dark:text-dmText">${r.climateRisk}</td>
+            <td class="p-3 text-lmText dark:text-dmText">${r.nationalDebtRisk}</td>
+            <td class="p-3 text-lmText dark:text-dmText">${r.povertyRate}</td>
+            <td class="p-3 text-lmText dark:text-dmText">${r.techRegulationStrength}</td>
+          </tr>
+        `
+            )
+            .join("")}
+      </tbody>
+    </table>
+  </div>
+</div>
+
   `;
 }
