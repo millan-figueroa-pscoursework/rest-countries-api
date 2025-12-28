@@ -129,42 +129,56 @@ export function renderDetail(
   detailSection: HTMLElement,
   detailCard: HTMLDivElement
 ) {
-  // hide grid and controls
+  // hide grid and controls, show details
   controls.hidden = true;
   grid.hidden = true;
   detailSection.hidden = false;
+
+  // also hide impact table while in detail view
+  const impactSection = document.getElementById("impact-table");
+  if (impactSection) impactSection.hidden = true;
 
   // app-level fields only
   const flag = country.flagUrl;
   const name = country.displayName;
   const population = country.population.toLocaleString();
   const region = country.region;
+  const code = country.code;
 
   detailCard.innerHTML = `
-    <div class="flex flex-col gap-6">
-      <div class="flex items-center gap-4">
+    <div class="grid gap-10 lg:grid-cols-[minmax(320px,520px)_1fr] items-start">
+      <div>
         <img
           src="${flag}"
           alt=""
-          class="h-10 w-16 rounded-sm border"
+          class="w-full h-[260px] lg:h-80 object-cover rounded-xl
+                 border border-lmInput/30 dark:border-dmText/10
+                 shadow-sm"
         />
-        <h2 class="text-2xl font-semibold">${name}</h2>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 text-sm">
-        <div>
-          <span class="opacity-70">Population</span>
-          <div class="font-medium">${population}</div>
+      <div class="text-lmText dark:text-dmText">
+        <h2 class="text-3xl font-extrabold mb-6">${name}</h2>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border p-4 bg-surface dark:bg-dmElement border-lmInput/30 dark:border-dmText/10">
+            <div class="text-xs tracking-wide text-lmInput dark:text-dmText/70">Population</div>
+            <div class="text-lg font-semibold mt-1">${population}</div>
+          </div>
+
+          <div class="rounded-xl border p-4 bg-surface dark:bg-dmElement border-lmInput/30 dark:border-dmText/10">
+            <div class="text-xs tracking-wide text-lmInput dark:text-dmText/70">Region</div>
+            <div class="text-lg font-semibold mt-1">${region}</div>
+          </div>
+
+          <div class="rounded-xl border p-4 bg-surface dark:bg-dmElement border-lmInput/30 dark:border-dmText/10 sm:col-span-2">
+            <div class="text-xs tracking-wide text-lmInput dark:text-dmText/70">Country Code (CCA3)</div>
+            <div class="text-lg font-semibold mt-1">${code}</div>
+          </div>
         </div>
 
-        <div>
-          <span class="opacity-70">Region</span>
-          <div class="font-medium">${region}</div>
-        </div>
-
-        <div>
-          <span class="opacity-70">Country Code</span>
-          <div class="font-medium">${country.code}</div>
+        <div class="mt-6 text-sm text-lmInput dark:text-dmText/70">
+          Next: replace these “country facts” with impact signals (AI DC / water / climate / debt / poverty / regulation).
         </div>
       </div>
     </div>
