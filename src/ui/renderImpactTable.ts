@@ -1,24 +1,24 @@
 import type { CountryImpact } from "../models/app/CountryImpact";
 
 export function renderImpactTable(rows: CountryImpact[]) {
-    const mount = document.getElementById("impact-table");
-    if (!mount) return;
+  const mount = document.getElementById("impact-table");
+  if (!mount) return;
 
-    const seeded = rows.filter(r =>
-        r.aiDataCenterPresence !== "unknown" ||
-        r.waterInsecurity !== "unknown" ||
-        r.climateRisk !== "unknown" ||
-        r.nationalDebtRisk !== "unknown" ||
-        r.povertyRate !== "unknown" ||
-        r.techRegulationStrength !== "unknown"
-    );
+  const seeded = rows.filter(r =>
+    r.aiDataCenterPresence !== "unknown" ||
+    r.waterInsecurity !== "unknown" ||
+    r.climateRisk !== "unknown" ||
+    r.nationalDebtRisk !== "unknown" ||
+    r.povertyRate !== "unknown" ||
+    r.techRegulationStrength !== "unknown"
+  );
 
-    mount.innerHTML = `
-    <div class="mt-10">
+  mount.innerHTML = `
+    <div class="mx-2 py-10">
   <div class="flex items-end justify-between mb-3">
     <div>
       <h2 class="text-xl font-semibold text-lmText dark:text-dmText">
-        Extraction Atlas — Seeded Impact Table
+        Seeded Impact Table
       </h2>
       <p class="text-sm text-lmInput dark:text-dmText/70">
         Showing ${seeded.length} seeded countries
@@ -56,8 +56,8 @@ export function renderImpactTable(rows: CountryImpact[]) {
 
       <tbody>
         ${seeded
-            .map(
-                (r) => `
+      .map(
+        (r) => `
           <tr
             class="
               border-b border-lmInput/20 dark:border-dmText/10
@@ -86,8 +86,8 @@ export function renderImpactTable(rows: CountryImpact[]) {
             <td class="p-3 text-lmText dark:text-dmText">${r.techRegulationStrength}</td>
           </tr>
         `
-            )
-            .join("")}
+      )
+      .join("")}
       </tbody>
     </table>
   </div>

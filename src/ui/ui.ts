@@ -115,6 +115,11 @@ export function handleDetail(
 
     // restore scroll position to where user left off
     window.scrollTo({ top: scrollPos, behavior: "instant" as ScrollBehavior });
+
+    // show the impact table again
+    const impactSection = document.getElementById("impact-table");
+    if (impactSection) impactSection.hidden = false;
+
   });
 
   // click to show border country info
@@ -150,7 +155,7 @@ export async function renderDetail(
   grid: HTMLElement,
   detailSection: HTMLElement,
   detailCard: HTMLDivElement,
-  countries: Country[]
+  // countries: Country[]
 ) {
   // hide grid and controls, show details
   controls.hidden = true;
