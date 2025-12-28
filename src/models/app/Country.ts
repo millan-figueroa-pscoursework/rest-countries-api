@@ -4,4 +4,13 @@ export interface Country {
     region: string;
     population: number;
     flagUrl: string;
+
+    subregion?: string;
+    capital?: string[];
+    tld?: string[];
+    currencies?: Record<string, { name: string; symbol?: string }>;
+    languages?: Record<string, string>;
+
+    borders?: string[];
 }
+

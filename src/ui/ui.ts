@@ -122,12 +122,13 @@ export function handleDetail(
 // *** Displays Country Details
 
 // toggles detail view by hiding main grid and controls and renders the detail contents
-export function renderDetail(
+export async function renderDetail(
   country: Country,
   controls: HTMLElement,
   grid: HTMLElement,
   detailSection: HTMLElement,
-  detailCard: HTMLDivElement
+  detailCard: HTMLDivElement,
+  countries: Country[]
 ) {
   // hide grid and controls, show details
   controls.hidden = true;
@@ -141,45 +142,102 @@ export function renderDetail(
   // app-level fields only
   const flag = country.flagUrl;
   const name = country.displayName;
+
   const population = country.population.toLocaleString();
-  const region = country.region;
-  const code = country.code;
+  const region = country.region || "N/A";
+  const subRegion = country.subregion || "N/A";
+  const capital = country.capital?.[0] ?? "N/A";
+
+  const currencies = country.currencies
+    ? Object.values(country.currencies)
+      .map(c => `${c.name}${c.symbol ? ` (${c.symbol})` : ""}`)
+      .join(", ")
+    : "N/A";
+
+  const languages = country.languages
+    ? Object.values(country.languages).join(", ")
+    : "N/A";
+
+  // borders
+  const borders = country.borders ?? [];
+  const codeLookup = await fetchCodeLookup();
+  const borderItems = borders.map(code => ({
+    code,
+    name: codeLookup[code] ?? code
+  }));
 
   detailCard.innerHTML = `
-    <div class="grid gap-10 lg:grid-cols-[minmax(320px,520px)_1fr] items-start">
+    <div class="grid gap-10 lg:grid-cols-[minmax(320px,520px)_1fr] items-start text-lmText dark:text-dmText">
       <div>
         <img
           src="${flag}"
           alt=""
-          class="w-full h-[260px] lg:h-80 object-cover rounded-xl
-                 border border-lmInput/30 dark:border-dmText/10
-                 shadow-sm"
+          class="w-full h-[260px] lg:h-[320px] object-cover rounded-xl
+                 border border-lmInput/30 dark:border-dmText/10 shadow-sm"
         />
       </div>
 
-      <div class="text-lmText dark:text-dmText">
+      <div>
         <h2 class="text-3xl font-extrabold mb-6">${name}</h2>
 
         <div class="grid gap-4 sm:grid-cols-2">
-          <div class="rounded-xl border p-4 bg-surface dark:bg-dmElement border-lmInput/30 dark:border-dmText/10">
-            <div class="text-xs tracking-wide text-lmInput dark:text-dmText/70">Population</div>
-            <div class="text-lg font-semibold mt-1">${population}</div>
+          <div>
+            <div class="text-sm text-lmInput dark:text-dmText/70">Population</div>
+            <div class="font-semibold">${population}</div>
           </div>
 
-          <div class="rounded-xl border p-4 bg-surface dark:bg-dmElement border-lmInput/30 dark:border-dmText/10">
-            <div class="text-xs tracking-wide text-lmInput dark:text-dmText/70">Region</div>
-            <div class="text-lg font-semibold mt-1">${region}</div>
+          <div>
+            <div class="text-sm text-lmInput dark:text-dmText/70">Region</div>
+            <div class="font-semibold">${region}</div>
           </div>
 
-          <div class="rounded-xl border p-4 bg-surface dark:bg-dmElement border-lmInput/30 dark:border-dmText/10 sm:col-span-2">
-            <div class="text-xs tracking-wide text-lmInput dark:text-dmText/70">Country Code (CCA3)</div>
-            <div class="text-lg font-semibold mt-1">${code}</div>
+          <div>
+            <div class="text-sm text-lmInput dark:text-dmText/70">Sub Region</div>
+            <div class="font-semibold">${subRegion}</div>
+          </div>
+
+          <div>
+            <div class="text-sm text-lmInput dark:text-dmText/70">Capital</div>
+            <div class="font-semibold">${capital}</div>
+          </div>
+
+          <div class="sm:col-span-2">
+            <div class="text-sm text-lmInput dark:text-dmText/70">Currencies</div>
+            <div class="font-semibold">${currencies}</div>
+          </div>
+
+          <div class="sm:col-span-2">
+            <div class="text-sm text-lmInput dark:text-dmText/70">Languages</div>
+            <div class="font-semibold">${languages}</div>
           </div>
         </div>
 
-        <div class="mt-6 text-sm text-lmInput dark:text-dmText/70">
-          Next: replace these “country facts” with impact signals (AI DC / water / climate / debt / poverty / regulation).
-        </div>
+        ${borderItems.length
+      ? `
+          <div class="mt-8">
+            <div class="text-sm font-semibold mb-3">Border Countries:</div>
+            <div class="flex flex-wrap gap-2">
+              ${borderItems
+        .map(
+          b => `
+                <button
+                  class="px-4 py-2 rounded-md border text-sm
+                         bg-surface dark:bg-dmElement
+                         border-lmInput/30 dark:border-dmText/10
+                         hover:bg-lmBg/60 dark:hover:bg-dmBg/40 transition-colors"
+                  data-border-code="${b.code}"
+                  type="button"
+                >
+                  ${b.name}
+                </button>
+              `
+        )
+        .join("")}
+            </div>
+          </div>
+        `
+      : ""
+    }
       </div>
     </div>
   `;

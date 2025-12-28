@@ -19,8 +19,16 @@ function toCountry(apiCountry: ApiCountry): Country {
         displayName: apiCountry.name.common,
         region: apiCountry.region,
         population: apiCountry.population,
-        flagUrl: apiCountry.flags.svg ?? apiCountry.flags.png
+        flagUrl: apiCountry.flags.svg ?? apiCountry.flags.png ?? "",
+
+        subregion: apiCountry.subregion,
+        capital: apiCountry.capital,
+        tld: apiCountry.tld,
+        currencies: apiCountry.currencies,
+        languages: apiCountry.languages,
+        borders: apiCountry.borders,
     };
+
 }
 
 // *** Main Data Fetch ***
