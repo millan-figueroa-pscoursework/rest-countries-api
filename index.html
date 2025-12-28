@@ -1,111 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>World Navigator</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" src="/src/main.ts" defer></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+      defer
+    ></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>World Navigator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet" />
-  <script type="module" src="/src/main.ts" defer></script>
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
-</head>
+  <body
+    class="h-full font-nunito bg-lmBg text-lmText dark:bg-dmBg dark:text-surface"
+  >
+    <!-- *** Header ***  -->
 
-<body class="h-full font-nunito bg-lmBg text-lmText dark:bg-dmBg dark:text-surface">
+    <header class="bg-surface dark:bg-dmElement shadow-sm py-2 mb-4">
+      <div
+        class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between"
+      >
+        <h1 class="text-md md:text-2xl font-bold">Where in the world?</h1>
 
-<!-- *** Header ***  -->
-
-  <header class="bg-surface dark:bg-dmElement shadow-sm py-2 mb-4">
-    <div class="max-w-7xl mx-auto px-4 py-3.5 flex items-center justify-between">
-      <h1 class="text-md md:text-2xl font-bold">Where in the world?</h1>
-
-      <!-- Dark/Light Mode Btn -->
-      <button id="theme-toggle-btn" class="theme-toggle inline-flex items-center gap-2 rounded-md
-          dark:border-transparent
-          bg-surface dark:bg-dmElement
-          text-lmText dark:text-surface
-          hover:bg-lmBg dark:hover:bg-dmBg/60
-          px-2 py-2 text-sm md:text-md transition">
-        <ion-icon id="theme-icon" name="moon-outline" class="text-sm md:text-lg font-semibold"></ion-icon>
-        <span>Dark Mode</span>
-      </button>
-    </div>
-  </header>
-
-  <main 
-    id="app" 
-    class="max-w-7xl mx-auto md:pb-12 space-y-6 text-sm">
-
-<!-- *** Controls *** -->
- 
-    <section 
-    id="controls" 
-    class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between px-4 py-4 md:py-8">
-  
-      <!-- Country Search -->
-      <div class="relative w-full sm:max-w-md">
-        <input 
-          type="search" 
-          id="search-input" 
-          placeholder="Search for a country..." 
-          class="w-full rounded-md 
-            dark:border-transparent
-            bg-surface dark:bg-dmElement
-            text-lmText dark:text-surface
-            placeholder-lmInput/80 dark:placeholder-surface/80
-            pl-14 py-4 
-            outline-none focus:rinring-dmElement/60
-            transition" />      
-        <ion-icon 
-        name="search-outline" 
-        class="absolute left-3 top-1/2 -translate-y-1/2
-            text-lmInput/60 dark:text-surface px-2 font-semibold
-            text-lg pointer-events-none">
-        </ion-icon>
+        <!-- Dark/Light Mode Btn -->
+        <button
+          id="theme-toggle-btn"
+          class="theme-toggle inline-flex items-center gap-2 rounded-md dark:border-transparent bg-surface dark:bg-dmElement text-lmText dark:text-surface hover:bg-lmBg dark:hover:bg-dmBg/60 px-2 py-2 text-sm md:text-md transition"
+        >
+          <ion-icon
+            id="theme-icon"
+            name="moon-outline"
+            class="text-sm md:text-lg font-semibold"
+          ></ion-icon>
+          <span>Dark Mode</span>
+        </button>
       </div>
+    </header>
 
-      <!-- Region Filter -->
-      <div class="relative inline-block">
-        <select id="region-filter" class="appearance-none w-full rounded-md 
-            bg-surface dark:bg-dmElement
-            text-lmText dark:text-surface
-            placeholder-lmInput/60
-            hover:bg-lmBg dark:hover:bg-dmBg/60
-            px-6 md:pr-20 py-4 my-4 md:my-0 transition">
-          <option value="">Filter by Region</option>
-          <option>Africa</option>
-          <option>Americas</option>
-          <option>Asia</option>
-          <option>Europe</option>
-          <option>Oceania</option>
-        </select>
-        <ion-icon name="chevron-down-outline" class="pointer-events-none absolute right-4 top-1/2 pl-4 -translate-y-1/2 text-md
-            text-lmText dark:text-surface"></ion-icon>
-      </div>
-    </section>
+    <main id="app" class="max-w-7xl mx-auto md:pb-12 space-y-6 text-sm">
+      <!-- *** Controls *** -->
 
-<!-- *** Countries Grid ***  -->
-    <section 
-      id="countries-grid" 
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 px-8 md:px-0 m-4 md:m-2">
-    </section>
+      <section
+        id="controls"
+        class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between px-4 py-4 md:py-8"
+      >
+        <!-- Country Search -->
+        <div class="relative w-full sm:max-w-md">
+          <input
+            type="search"
+            id="search-input"
+            placeholder="Search for a country..."
+            class="w-full rounded-md dark:border-transparent bg-surface dark:bg-dmElement text-lmText dark:text-surface placeholder-lmInput/80 dark:placeholder-surface/80 pl-14 py-4 outline-none focus:rinring-dmElement/60 transition"
+          />
+          <ion-icon
+            name="search-outline"
+            class="absolute left-3 top-1/2 -translate-y-1/2 text-lmInput/60 dark:text-surface px-2 font-semibold text-lg pointer-events-none"
+          >
+          </ion-icon>
+        </div>
 
-<!-- *** Details View ***  -->
-    <section id="detail" hidden class="min-h-screen px-4 md:px-0 py-8 md:py-16">
-    
-      <!-- Back Button -->
-      <button id="back-btn" class="inline-flex items-center gap-2 rounded-md shadow-md ring-1 ring-black/5
-          bg-surface dark:bg-dmElement
-          text-lmText dark:text-surface
-          hover:bg-lmBg dark:hover:bg-dmBg/60
-          px-8 py-2 text-md transition">
-        <span>&larr; Back</span>
-      </button>
-    
-      <!-- Detail Content -->
-      <div id="detail-card" class="mt-10 md:mt-16"></div>
-    
-    </section>
-  </main>
-</body>
+        <!-- Region Filter -->
+        <div class="relative inline-block">
+          <select
+            id="region-filter"
+            class="appearance-none w-full rounded-md bg-surface dark:bg-dmElement text-lmText dark:text-surface placeholder-lmInput/60 hover:bg-lmBg dark:hover:bg-dmBg/60 px-6 md:pr-20 py-4 my-4 md:my-0 transition"
+          >
+            <option value="">Filter by Region</option>
+            <option>Africa</option>
+            <option>Americas</option>
+            <option>Asia</option>
+            <option>Europe</option>
+            <option>Oceania</option>
+          </select>
+          <ion-icon
+            name="chevron-down-outline"
+            class="pointer-events-none absolute right-4 top-1/2 pl-4 -translate-y-1/2 text-md text-lmText dark:text-surface"
+          ></ion-icon>
+        </div>
+      </section>
 
+      <!-- *** Countries Grid ***  -->
+      <section
+        id="countries-grid"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-16 px-8 md:px-0 m-4 md:m-2"
+      ></section>
+
+      <!-- *** Details View ***  -->
+      <section
+        id="detail"
+        hidden
+        class="min-h-screen px-4 md:px-0 py-8 md:py-16"
+      >
+        <!-- Back Button -->
+        <button
+          id="back-btn"
+          class="inline-flex items-center gap-2 rounded-md shadow-md ring-1 ring-black/5 bg-surface dark:bg-dmElement text-lmText dark:text-surface hover:bg-lmBg dark:hover:bg-dmBg/60 px-8 py-2 text-md transition"
+        >
+          <span>&larr; Back</span>
+        </button>
+
+        <!-- Detail Content -->
+        <div id="detail-card" class="mt-10 md:mt-16"></div>
+      </section>
+
+      <!-- Impact table -->
+      <section id="impact-table"></section>
+    </main>
+  </body>
 </html>

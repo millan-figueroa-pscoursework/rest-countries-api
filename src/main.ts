@@ -3,6 +3,9 @@ import { fetchCountries } from "./api/countries";
 import { APIError, CountryLoadError } from "./utils/errorHandler";
 import type { Country } from "./models/app/Country";
 import { handleDetail, renderDetail, toggleTheme, renderGrid } from "./ui/ui"
+import { buildCountryImpacts } from "./models/app/buildCountryImpacts";
+import { renderImpactTable } from "./ui/renderImpactTable";
+
 
 // Select DOM elements and type annotate
 const themeToggleBtn = document.querySelector("#theme-toggle-btn") as HTMLButtonElement;
@@ -16,6 +19,8 @@ const backBtn = document.querySelector("#back-btn") as HTMLButtonElement;
 
 
 let countries: Country[] = [];
+let impacts = [];
+
 
 
 // *** Fetch Country Data from API
@@ -25,8 +30,14 @@ fetchCountries()
     // when data arrives, save fetched countries to countries variable
     countries = data;
 
+    // build impact layer
+    impacts = buildCountryImpacts(countries);
+
     // display countries
-    renderGrid(data, grid);
+    renderGrid(countries, grid);
+
+    // render impact table
+    renderImpactTable(impacts);
 
     // call functions after data is fetched
     countriesSearch();
