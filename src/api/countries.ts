@@ -4,7 +4,8 @@ import type { Country } from "../models/app/Country";
 
 // REST API caps at 10 fields
 const DISPLAY_FIELDS =
-    "name,flags,population,region,subregion,capital,tld,currencies,languages,borders";
+    "name,flags,population,region,subregion,capital,currencies,languages,borders,cca3";
+
 
 // Stores transformed countries for UI
 let cacheCountries: Country[] | null = null;

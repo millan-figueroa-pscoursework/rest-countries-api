@@ -116,6 +116,28 @@ export function handleDetail(
     // restore scroll position to where user left off
     window.scrollTo({ top: scrollPos, behavior: "instant" as ScrollBehavior });
   });
+
+  // click to show border country info
+  document.addEventListener("click", async (e) => {
+    const target = e.target as HTMLElement;
+    const btn = target.closest<HTMLButtonElement>("[data-border-code]");
+    if (!btn) return;
+
+    console.log("Border button clicked");
+
+    const code = btn.getAttribute("data-border-code");
+    console.log("Border code:", code);
+
+    if (!code) return;
+
+    const nextCountry = countries.find(c => c.code === code);
+    console.log("Found country:", nextCountry);
+
+    if (!nextCountry) return;
+
+    await renderDetail(nextCountry, controls, grid, detailSection, detailCard, countries);
+  });
+
 }
 
 
@@ -168,16 +190,16 @@ export async function renderDetail(
 
   detailCard.innerHTML = `
     <div class="grid gap-10 lg:grid-cols-[minmax(320px,520px)_1fr] items-start text-lmText dark:text-dmText">
-      <div>
+      <div class="p-6">
         <img
           src="${flag}"
           alt=""
-          class="w-full h-[260px] lg:h-[320px] object-cover rounded-xl
+          class="w-full h-[260px] lg:h-80 object-cover rounded-xl
                  border border-lmInput/30 dark:border-dmText/10 shadow-sm"
         />
       </div>
 
-      <div>
+      <div class="px-6">
         <h2 class="text-3xl font-extrabold mb-6">${name}</h2>
 
         <div class="grid gap-4 sm:grid-cols-2">
