@@ -30,6 +30,7 @@ const seedLookup = buildSeedLookup(seedRows);
 export function buildWaterEnergyImpacts(countries: Country[]): WaterEnergyImpact[] {
     return countries.map((country) => {
         const row = seedLookup[country.code];
+        console.log("country.code", country.code, "seed keys sample", Object.keys(seedLookup).slice(0, 5));
 
         return {
             country,

@@ -1,5 +1,7 @@
 import type { Country } from "../models/app/Country";
 import { fetchCodeLookup } from "../api/countries";
+import { buildWaterEnergyImpacts } from "../models/app/buildWaterEnergyImpact";
+
 
 // ***UI FUNCTIONS
 
@@ -157,6 +159,9 @@ export async function renderDetail(
   detailCard: HTMLDivElement,
   // countries: Country[]
 ) {
+  const we = buildWaterEnergyImpacts([country])[0];
+
+
   // hide grid and controls, show details
   controls.hidden = true;
   grid.hidden = true;
@@ -237,6 +242,30 @@ export async function renderDetail(
             <div class="text-sm text-lmInput dark:text-dmText/70">Languages</div>
             <div class="font-semibold">${languages}</div>
           </div>
+
+          // First water impact section
+          <div class="sm:col-span-2 mt-6 pt-6 border-t border-lmInput/30 dark:border-dmText/10">
+  <div class="text-sm font-semibold mb-3">Water & Energy</div>
+
+  <div class="grid gap-3 sm:grid-cols-3">
+    <div>
+      <div class="text-sm text-lmInput dark:text-dmText/70">Water Stress</div>
+      <div class="font-semibold">${we.baselineWaterStress}</div>
+    </div>
+
+    <div>
+      <div class="text-sm text-lmInput dark:text-dmText/70">Grid Strain</div>
+      <div class="font-semibold">${we.energyGridStrain}</div>
+    </div>
+
+    <div>
+      <div class="text-sm text-lmInput dark:text-dmText/70">DC Conflict Risk</div>
+      <div class="font-semibold">${we.dataCenterWaterConflictRisk}</div>
+    </div>
+  </div>
+</div>
+
+          
         </div>
 
         ${borderItems.length
