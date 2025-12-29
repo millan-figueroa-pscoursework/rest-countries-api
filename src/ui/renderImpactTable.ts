@@ -1,8 +1,19 @@
 import type { CountryImpact } from "../models/app/CountryImpact";
+import { buildWaterEnergyImpacts } from "../models/app/buildWaterEnergyImpact";
+
+
 
 export function renderImpactTable(rows: CountryImpact[]) {
+
   const mount = document.getElementById("impact-table");
   if (!mount) return;
+
+  const countries = rows.map(r => r.country);
+  const waterEnergyImpacts = buildWaterEnergyImpacts(countries);
+  const waterEnergyByCode = Object.fromEntries(
+    waterEnergyImpacts.map(i => [i.country.code, i])
+  );
+
 
   const seeded = rows.filter(r =>
     r.aiDataCenterPresence !== "unknown" ||
@@ -12,6 +23,8 @@ export function renderImpactTable(rows: CountryImpact[]) {
     r.povertyRate !== "unknown" ||
     r.techRegulationStrength !== "unknown"
   );
+
+
 
   mount.innerHTML = `
     <div class="mx-2 py-10">
@@ -33,61 +46,73 @@ export function renderImpactTable(rows: CountryImpact[]) {
       border-lmInput/30 dark:border-dmText/10
     "
   >
-    <table class="min-w-[900px] w-full text-sm">
+    <table class="min-w-[1200px] w-full text-sm">
       <thead
-        class="
-          sticky top-0 z-10
-          bg-surface/95 dark:bg-dmElement/95
-          backdrop-blur
-          border-b border-lmInput/30 dark:border-dmText/10
-        "
-      >
-        <tr class="text-left">
-          <th class="p-3 font-semibold text-lmText dark:text-dmText">Country</th>
-          <th class="p-3 font-semibold text-lmText dark:text-dmText">Region</th>
-          <th class="p-3 font-semibold text-lmText dark:text-dmText">AI DC</th>
-          <th class="p-3 font-semibold text-lmText dark:text-dmText">Water</th>
-          <th class="p-3 font-semibold text-lmText dark:text-dmText">Climate</th>
-          <th class="p-3 font-semibold text-lmText dark:text-dmText">Debt</th>
-          <th class="p-3 font-semibold text-lmText dark:text-dmText">Poverty</th>
-          <th class="p-3 font-semibold text-lmText dark:text-dmText">Regulation</th>
-        </tr>
-      </thead>
+  class="
+    sticky top-0 z-10
+    bg-surface/95 dark:bg-dmElement/95
+    backdrop-blur
+    border-b border-lmInput/30 dark:border-dmText/10
+  "
+>
+  <tr class="text-left">
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">Country</th>
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">Region</th>
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">AI DC</th>
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">Water</th>
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">Climate</th>
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">Debt</th>
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">Poverty</th>
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">Regulation</th>
+
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">Water Stress</th>
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">Grid Strain</th>
+    <th class="p-3 font-semibold text-lmText dark:text-dmText">DC Conflict</th>
+  </tr>
+</thead>
+
 
       <tbody>
         ${seeded
-      .map(
-        (r) => `
-          <tr
-            class="
-              border-b border-lmInput/20 dark:border-dmText/10
-              hover:bg-lmBg/60 dark:hover:bg-dmBg/40
-              transition-colors
-            "
-          >
-            <td class="p-3 font-medium text-lmText dark:text-dmText">
-              <div class="flex items-center gap-2">
-                <img
-                  class="h-4 w-6 rounded-sm border border-lmInput/30 dark:border-dmText/10"
-                  src="${r.country.flagUrl}"
-                  alt=""
-                />
-                <span>${r.country.displayName}</span>
-              </div>
-            </td>
+      .map((r) => {
+        const we = waterEnergyByCode[r.country.code];
 
-            <td class="p-3 text-lmText/80 dark:text-dmText/80">${r.country.region}</td>
+        return `
+      <tr
+        class="
+          border-b border-lmInput/20 dark:border-dmText/10
+          hover:bg-lmBg/60 dark:hover:bg-dmBg/40
+          transition-colors
+        "
+      >
+        <td class="p-3 font-medium text-lmText dark:text-dmText">
+          <div class="flex items-center gap-2">
+            <img
+              class="h-4 w-6 rounded-sm border border-lmInput/30 dark:border-dmText/10"
+              src="${r.country.flagUrl}"
+              alt=""
+            />
+            <span>${r.country.displayName}</span>
+          </div>
+        </td>
 
-            <td class="p-3 text-lmText dark:text-dmText">${r.aiDataCenterPresence}</td>
-            <td class="p-3 text-lmText dark:text-dmText">${r.waterInsecurity}</td>
-            <td class="p-3 text-lmText dark:text-dmText">${r.climateRisk}</td>
-            <td class="p-3 text-lmText dark:text-dmText">${r.nationalDebtRisk}</td>
-            <td class="p-3 text-lmText dark:text-dmText">${r.povertyRate}</td>
-            <td class="p-3 text-lmText dark:text-dmText">${r.techRegulationStrength}</td>
-          </tr>
-        `
-      )
+        <td class="p-3 text-lmText/80 dark:text-dmText/80">${r.country.region}</td>
+
+        <td class="p-3 text-lmText dark:text-dmText">${r.aiDataCenterPresence}</td>
+        <td class="p-3 text-lmText dark:text-dmText">${r.waterInsecurity}</td>
+        <td class="p-3 text-lmText dark:text-dmText">${r.climateRisk}</td>
+        <td class="p-3 text-lmText dark:text-dmText">${r.nationalDebtRisk}</td>
+        <td class="p-3 text-lmText dark:text-dmText">${r.povertyRate}</td>
+        <td class="p-3 text-lmText dark:text-dmText">${r.techRegulationStrength}</td>
+
+        <td class="p-3 text-lmText dark:text-dmText">${we?.baselineWaterStress ?? "unknown"}</td>
+        <td class="p-3 text-lmText dark:text-dmText">${we?.energyGridStrain ?? "unknown"}</td>
+        <td class="p-3 text-lmText dark:text-dmText">${we?.dataCenterWaterConflictRisk ?? "unknown"}</td>
+      </tr>
+    `;
+      })
       .join("")}
+
       </tbody>
     </table>
   </div>
