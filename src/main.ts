@@ -7,6 +7,7 @@ import { buildCountryImpacts } from "./models/app/buildCountryImpacts";
 import { renderImpactTable } from "./ui/renderImpactTable";
 
 
+
 // Select DOM elements and type annotate
 const themeToggleBtn = document.querySelector("#theme-toggle-btn") as HTMLButtonElement;
 const controls = document.querySelector("#controls") as HTMLElement;
@@ -22,13 +23,20 @@ let countries: Country[] = [];
 let impacts = [];
 
 
-
 // *** Fetch Country Data from API
 
 fetchCountries()
   .then(data => {
     // when data arrives, save fetched countries to countries variable
     countries = data;
+
+    console.log(
+      "Americas codes:",
+      countries
+        .filter(c => c.region === "Americas")
+        .map(c => c.code)
+        .sort()
+    );
 
     // build impact layer
     impacts = buildCountryImpacts(countries);

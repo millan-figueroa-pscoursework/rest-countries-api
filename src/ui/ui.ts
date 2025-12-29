@@ -243,7 +243,7 @@ export async function renderDetail(
             <div class="font-semibold">${languages}</div>
           </div>
 
-          // First water impact section
+          
           <div class="sm:col-span-2 mt-6 pt-6 border-t border-lmInput/30 dark:border-dmText/10">
   <div class="text-sm font-semibold mb-3">Water & Energy</div>
 
@@ -270,7 +270,7 @@ export async function renderDetail(
 
         ${borderItems.length
       ? `
-          <div class="mt-8">
+          <div class="mt-8 border-t py-4 border-lmInput/30 dark:border-dmText/10">
             <div class="text-sm font-semibold mb-3">Border Countries:</div>
             <div class="flex flex-wrap gap-2">
               ${borderItems

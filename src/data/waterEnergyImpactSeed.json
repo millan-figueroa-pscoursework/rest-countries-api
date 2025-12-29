@@ -1,9 +1,81 @@
 [
   {
-    "countryCode": "USA",
+    "countryCode": "ABW",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "AIA",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "ARG",
     "baselineWaterStress": "medium",
     "energyGridStrain": "medium",
     "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "ATG",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "BES",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "BHS",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "BLM",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "BLZ",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "BMU",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "BOL",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "high",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "BRA",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "BRB",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "CAN",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
   },
   {
     "countryCode": "CHL",
@@ -12,21 +84,255 @@
     "dataCenterWaterConflictRisk": "high"
   },
   {
-    "countryCode": "IND",
-    "baselineWaterStress": "high",
-    "energyGridStrain": "high",
-    "dataCenterWaterConflictRisk": "high"
+    "countryCode": "COL",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
   },
   {
-    "countryCode": "KEN",
-    "baselineWaterStress": "high",
-    "energyGridStrain": "high",
-    "dataCenterWaterConflictRisk": "high"
+    "countryCode": "CRI",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
   },
   {
-    "countryCode": "NLD",
+    "countryCode": "CUB",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "CUW",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "CYM",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "DMA",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "DOM",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "ECU",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "FLK",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "GLP",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "GRD",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "GRL",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "GTM",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "GUF",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "GUY",
     "baselineWaterStress": "low",
     "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "HND",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "HTI",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "high",
+    "dataCenterWaterConflictRisk": "high"
+  },
+  {
+    "countryCode": "JAM",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "KNA",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "LCA",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "MAF",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "MEX",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "MSR",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "MTQ",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "NIC",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "PAN",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "PER",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "PRI",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "PRY",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "SLV",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "SPM",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "SUR",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "SXM",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "TCA",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "TTO",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "UMI",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "URY",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "USA",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "VCT",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "VEN",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "high",
+    "dataCenterWaterConflictRisk": "high"
+  },
+  {
+    "countryCode": "VGB",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
+    "dataCenterWaterConflictRisk": "low"
+  },
+  {
+    "countryCode": "VIR",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "low",
     "dataCenterWaterConflictRisk": "low"
   }
 ]
