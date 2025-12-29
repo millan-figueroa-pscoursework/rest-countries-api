@@ -1,0 +1,32 @@
+[
+  {
+    "countryCode": "USA",
+    "baselineWaterStress": "medium",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "medium"
+  },
+  {
+    "countryCode": "CHL",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "high"
+  },
+  {
+    "countryCode": "IND",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "high",
+    "dataCenterWaterConflictRisk": "high"
+  },
+  {
+    "countryCode": "KEN",
+    "baselineWaterStress": "high",
+    "energyGridStrain": "high",
+    "dataCenterWaterConflictRisk": "high"
+  },
+  {
+    "countryCode": "NLD",
+    "baselineWaterStress": "low",
+    "energyGridStrain": "medium",
+    "dataCenterWaterConflictRisk": "low"
+  }
+]
